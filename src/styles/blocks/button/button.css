@@ -1,0 +1,22 @@
+.button {
+  width: 176px;
+  height: 48px;
+  background-color: transparent;
+  border-radius: 100px;
+  border: 1px solid #fff;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .button {
+    width: 152px;
+    height: 40px;
+    font-size: 16px;
+    padding: 0;
+  }
+}

@@ -3,12 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="html, css">
+  <meta name="keywords" content="html, css, news, exploper">
   <meta name="description" content="Сервис для поиска новостей">
   <meta name="author" content="Катя Ромашкина">
+  <link rel="icon" href="<%=require('./images/favicon.png').default%>">
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
   <title>Сервис для поиска новостей</title>
 </head>
 <body>
+  <div class="root">
+    <section class="search">
+      <header class="header">
+        <div class="header__container root__section">
+          <a href="#">
+          <img src="<%=require('./images/logo.svg').default%>" alt="Логотип" class="logo">
+          </a>
+          <img class="menu__icon" src="<%=require('./images/menu.png').default%>">
+          <nav class="menu">
+            <ul class="menu__list">
+              <li class="menu__item">
+                <a href="#" class="menu__link menu__link_active">Главная</a>
+              </li>
+              <li class="menu__item">
+                <a href="#" class="menu__link">Сохранённые статьи</a>
+              </li>
+            </ul>
+            <button type="submit" name="submit" class="button">Авторизоваться</button>
+          </nav>
+        </div>
+      </header>
+      <div class="search__content">
+        <h1 class="search__title">Что в мире<br> творится?</h1>
+        <p class="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+        <form class="search__form" name="explorer" novalidate>
+          <input type="text" name="search" class="search__input" placeholder="Введите тему новости" minlength="2" maxlength="30" required>
+          <button type="submit" name="submit" class="button search__button">Искать</button>
+        </form>
+      </div>
+    </section>
+  </div>
 </body>
 </html>

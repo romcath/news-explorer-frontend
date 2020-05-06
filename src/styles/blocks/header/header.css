@@ -1,0 +1,12 @@
+@import url(./__container/header__container.css);
+
+.header {
+  min-height: 80px;
+  border-bottom: 1px solid #bdc3c7;
+}
+
+@media screen and (max-width: 425px) {
+  .header {
+    min-height: 56px;
+  }
+}
