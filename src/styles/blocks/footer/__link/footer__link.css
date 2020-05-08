@@ -1,0 +1,10 @@
+.footer__link {
+  font-weight: normal;
+  color: #1a1b22;
+}
+
+@media screen and (max-width: 700px) {
+  .footer__link {
+    font-size: 18px;
+  }
+}

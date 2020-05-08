@@ -1,6 +1,7 @@
 @import url(./__cards/root__cards.css);
 @import url(./__results/root__results.css);
 @import url(./__author/root__author.css);
+@import url(./__footer/root__footer.css);
 
 .root {
   max-width: 1440px;
