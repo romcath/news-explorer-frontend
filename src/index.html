@@ -94,6 +94,26 @@
           <button class="button card__show-button">Показать ещё</button>
         </div>
       </section>
+
+      <section class="author root__author">
+        <div class="author__container">
+          <picture>
+            <source srcset="<%=require('./images/avatar_middle.png').default%>" media="(max-width: 1024px)">
+            <source srcset="<%=require('./images/avatar_tablet.png').default%>" media="(max-width: 800px)">
+            <img src="<%=require('./images/avatar.png').default%>" alt="Фото автора" class="author__avatar">
+          </picture>
+          <div class="author__text-container">
+            <h2 class="title">Об авторе</h2>
+            <div class="author__text">
+              <p class="author__paragraph">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут,
+              чем вы занимаетесь, какими технологиями разработки владеете.</p>
+              <p class="author__paragraph">Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились,
+              и чем можете помочь потенциальным заказчикам.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 </body>
