@@ -1,12 +1,15 @@
 .header__container {
-  min-height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 85%;
+  min-height: 80px;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 425px) {
   .header__container {
+    width: 90%;
     min-height: 56px;
   }
 }

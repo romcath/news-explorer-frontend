@@ -1,7 +1,6 @@
 @import url(./__item/menu__item.css);
 @import url(./__list/menu__list.css);
 @import url(./__link/menu__link.css);
-@import url(./__icon/menu__icon.css);
 
 .menu {
   display: flex;

@@ -1,0 +1,22 @@
+.card__save-container {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+}
+
+@media screen and (max-width: 990px) {
+  .card__save-container {
+    top: 8px;
+    right: 8px;
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .card__save-container {
+    top: 16px;
+    right: 16px;
+    flex-direction: row;
+  }
+}

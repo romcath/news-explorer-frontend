@@ -1,0 +1,19 @@
+.card__content {
+  padding: 20px 24px 0;
+  margin-bottom: 16px;
+  height: 218px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .card__content {
+    padding: 16px 16px 0;
+    margin-bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .card__content {
+    margin-bottom: 8px;
+  }
+}

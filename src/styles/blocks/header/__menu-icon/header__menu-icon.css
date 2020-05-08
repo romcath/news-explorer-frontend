@@ -1,0 +1,15 @@
+.header__menu-icon {
+  background-image: url(../../../../images/menu.png);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  display: none;
+}
+
+@media screen and (max-width: 700px) {
+  .header__menu-icon {
+    display: block;
+  }
+}

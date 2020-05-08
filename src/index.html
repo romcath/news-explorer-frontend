@@ -14,18 +14,15 @@
   <div class="root">
     <section class="search">
       <header class="header">
-        <div class="header__container root__section">
+        <div class="header__container">
           <a href="#">
-          <img src="<%=require('./images/logo.svg').default%>" alt="Логотип" class="logo">
+            <img src="<%=require('./images/logo.svg').default%>" alt="Логотип" class="logo">
           </a>
-          <img class="menu__icon" src="<%=require('./images/menu.png').default%>">
+          <button class="header__menu-icon"></button>
           <nav class="menu">
             <ul class="menu__list">
               <li class="menu__item">
                 <a href="#" class="menu__link menu__link_active">Главная</a>
-              </li>
-              <li class="menu__item">
-                <a href="#" class="menu__link">Сохранённые статьи</a>
               </li>
             </ul>
             <button type="submit" name="submit" class="button">Авторизоваться</button>
@@ -33,7 +30,7 @@
         </div>
       </header>
       <div class="search__content">
-        <h1 class="search__title">Что в мире<br> творится?</h1>
+        <h1 class="search__title">Что в мире творится?</h1>
         <p class="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
         <form class="search__form" name="explorer" novalidate>
           <input type="text" name="search" class="search__input" placeholder="Введите тему новости" minlength="2" maxlength="30" required>
@@ -41,6 +38,63 @@
         </form>
       </div>
     </section>
+
+    <main class="content">
+      <section class="results root__results">
+        <div class="results__content">
+          <h2 class="title">Результаты поиска</h2>
+          <div class="cards root__cards">
+            <article class="card">
+              <img class="card__image" src="<%=require('./images/card_1.jpg').default%>" alt="">
+              <div class="card__save-container">
+                <span class="card__notification">Войдите, чтобы сохранять статьи</span>
+                <button class="card__save-icon"></button>
+              </div>
+              <div class="card__content">
+                <p class="card__date">2 августа, 2019</p>
+                <p class="card__title">Национальное достояние — парки</p>
+                <p class="card__text">В 2016 году Америка отмечала важный юбилей:
+                  сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
+                  где и сегодня каждый может приобщиться к природе.</p>
+              </div>
+              <p class="card__source">Лента.ру</p>
+            </article>
+
+            <article class="card">
+              <img class="card__image" src="<%=require('./images/card_2.jpg').default%>" alt="">
+              <div class="card__save-container">
+                <span class="card__notification">Войдите, чтобы сохранять статьи</span>
+                <button class="card__save-icon"></button>
+              </div>
+              <div class="card__content">
+                <p class="card__date">2 августа, 2019</p>
+                <p class="card__title">Лесные огоньки: история одной фотографии</p>
+                <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
+                  из местных чудес природы.</p>
+              </div>
+              <p class="card__source">Медуза</p>
+            </article>
+
+            <article class="card">
+              <img class="card__image" src="<%=require('./images/card_3.jpg').default%>" alt="">
+              <div class="card__save-container">
+                <span class="card__notification">Войдите, чтобы сохранять статьи</span>
+                <button class="card__save-icon"></button>
+              </div>
+              <div class="card__content">
+                <p class="card__date">2 августа, 2019</p>
+                <p class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</p>
+                <p class="card__text">Знаменитый фотограф снимает первозданные леса России, чтобы рассказать
+                  о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
+                </div>
+              <p class="card__source">Риа</p>
+            </article>
+
+          </div>
+          <button class="button card__show-button">Показать ещё</button>
+        </div>
+      </section>
+    </main>
   </div>
 </body>
 </html>
