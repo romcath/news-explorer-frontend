@@ -15,15 +15,13 @@
     <section class="search">
       <header class="header">
         <div class="header__container">
-          <a href="#">
-            <img src="<%=require('./images/logo.svg').default%>" alt="Логотип" class="logo">
-          </a>
-          <button class="header__menu-icon"></button>
+          <a href="#" class="logo logo_white">NewsExplorer</a>
+          <img src="<%=require('./images/menu.png').default%>" alt="" class="header__menu-icon">
           <div class="overlay">
             <nav class="menu">
               <ul class="menu__list">
                 <li class="menu__item">
-                  <a href="#" class="menu__link menu__link_active">Главная</a>
+                  <a href="#" class="menu__link menu__link_active menu__link_white menu__link_bordered">Главная</a>
                 </li>
               </ul>
               <ul class="menu__list">
@@ -31,7 +29,7 @@
                   <a href="#" class="menu__link">Сохранённые статьи</a>
                 </li>
               </ul>
-              <button type="submit" name="submit" class="button menu__btn-mobile">Авторизоваться</button>
+              <button type="submit" name="submit" class="button button_mobile">Авторизоваться</button>
             </nav>
           </div>
         </div>

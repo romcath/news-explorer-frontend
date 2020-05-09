@@ -1,4 +1,6 @@
 @import url(./_active/menu__link_active.css);
+@import url(./_white/menu__link_white.css);
+@import url(./_bordered/menu__link_bordered.css);
 
 .menu__link {
   text-decoration: none;

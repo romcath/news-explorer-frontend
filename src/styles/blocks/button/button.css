@@ -1,3 +1,5 @@
+@import url(./_mobile/button_mobile.css);
+
 .button {
   width: 176px;
   height: 48px;

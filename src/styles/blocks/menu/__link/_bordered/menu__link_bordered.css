@@ -1,0 +1,9 @@
+.menu .menu__link_bordered {
+  border-bottom: 4px solid #fff;
+}
+
+@media screen and (max-width: 700px) {
+  .menu .menu__link_bordered {
+    border: 0;
+  }
+}

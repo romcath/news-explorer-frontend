@@ -1,19 +1,17 @@
+@import url(./_white/logo_white.css);
+
 .logo {
-  max-width: 150px;
-  height: 25px;
-  object-fit: contain;
-  object-position: center;
+  font-family: 'Roboto Slab', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 700px) {
   .logo {
     position: relative;
     z-index: 2;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .logo {
-    max-width: 117px;
   }
 }
