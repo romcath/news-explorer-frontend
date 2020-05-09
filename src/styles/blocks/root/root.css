@@ -2,6 +2,7 @@
 @import url(./__results/root__results.css);
 @import url(./__author/root__author.css);
 @import url(./__footer/root__footer.css);
+@import url(./__no-results/root__no-results.css);
 
 .root {
   max-width: 1440px;

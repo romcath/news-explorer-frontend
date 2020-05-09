@@ -40,7 +40,15 @@
     </section>
 
     <main class="content">
-      <section class="results root__results">
+      <section class="no-results no-results_enable root__no-results">
+        <div class="no-results__container">
+          <img src="<%=require('./images/not-found.png').default%>" alt="Ничего не найдено" class="no-results___image">
+          <h2 class="no-results__title">Ничего не найдено</h2>
+          <p class="no-results__text">К сожалению по вашему запросу ничего не найдено.</p>
+        </div>
+      </section>
+
+      <section class="results results_enable root__results">
         <div class="results__content">
           <h2 class="title">Результаты поиска</h2>
           <div class="cards root__cards">
