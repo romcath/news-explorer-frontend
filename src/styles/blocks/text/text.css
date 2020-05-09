@@ -1,4 +1,4 @@
-.no-results__text {
+.text {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -6,4 +6,5 @@
   line-height: 24px;
   text-align: center;
   color: #b6bcbf;
+  margin: 0;
 }

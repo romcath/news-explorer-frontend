@@ -40,12 +40,17 @@
     </section>
 
     <main class="content">
-      <section class="no-results no-results_enable root__no-results">
+      <section class="no-results no-results_enable root__section">
         <div class="no-results__container">
           <img src="<%=require('./images/not-found.png').default%>" alt="Ничего не найдено" class="no-results___image">
           <h2 class="no-results__title">Ничего не найдено</h2>
-          <p class="no-results__text">К сожалению по вашему запросу ничего не найдено.</p>
+          <p class="text">К сожалению по вашему запросу ничего не найдено.</p>
         </div>
+      </section>
+
+      <section class="preloader preloader_enable root__section">
+        <i class="preloader__circle"></i>
+        <p class="text">Идет поиск новостей...</p>
       </section>
 
       <section class="results results_enable root__results">
