@@ -5,6 +5,13 @@
   object-position: center;
 }
 
+@media screen and (max-width: 700px) {
+  .logo {
+    position: relative;
+    z-index: 2;
+  }
+}
+
 @media screen and (max-width: 425px) {
   .logo {
     max-width: 117px;

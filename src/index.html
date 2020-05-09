@@ -19,14 +19,21 @@
             <img src="<%=require('./images/logo.svg').default%>" alt="Логотип" class="logo">
           </a>
           <button class="header__menu-icon"></button>
-          <nav class="menu">
-            <ul class="menu__list">
-              <li class="menu__item">
-                <a href="#" class="menu__link menu__link_active">Главная</a>
-              </li>
-            </ul>
-            <button type="submit" name="submit" class="button">Авторизоваться</button>
-          </nav>
+          <div class="overlay">
+            <nav class="menu">
+              <ul class="menu__list">
+                <li class="menu__item">
+                  <a href="#" class="menu__link menu__link_active">Главная</a>
+                </li>
+              </ul>
+              <ul class="menu__list">
+                <li class="menu__item">
+                  <a href="#" class="menu__link">Сохранённые статьи</a>
+                </li>
+              </ul>
+              <button type="submit" name="submit" class="button menu__btn-mobile">Авторизоваться</button>
+            </nav>
+          </div>
         </div>
       </header>
       <div class="search__content">
@@ -145,6 +152,72 @@
         </nav>
       </footer>
     </main>
+
+    <div class="popup popup_signup">
+      <div class="popup__content">
+        <img src="<%=require('./images/close.png').default%>" alt="" class="popup__close">
+        <h3 class="popup__title">Регистрация</h3>
+        <form class="popup__form" name="signup" novalidate>
+          <div class="popup__container">
+            <label for="email" class="popup__label">Email</label>
+            <input type="email" name="email" class="popup__input" placeholder="Введите почту" required>
+            <span class="popup__span" for="email">Неправильный формат email</span>
+          </div>
+          <div class="popup__container">
+            <label for="email" class="popup__label">Пароль</label>
+            <input type="password" name="pass" class="popup__input" placeholder="Введите пароль" required>
+            <span class="popup__span" for="pass"></span>
+          </div>
+          <div class="popup__container">
+            <label for="name" class="popup__label">Имя</label>
+            <input type="text" name="name" class="popup__input" placeholder="Введите своё имя" required>
+            <span class="popup__span" for="name"></span>
+          </div>
+          <div class="popup__container">
+            <span class="popup__span popup__span_center" for="submit">Такой пользователь уже есть</span>
+            <button type="submit" name="submit" class="button popup__button" disabled>Зарегистрироваться</button>
+          </div>
+        </form>
+        <p class="popup__text">или
+          <a class="popup__link" href="#">Войти</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="popup popup_signin">
+      <div class="popup__content">
+        <img src="<%=require('./images/close.png').default%>" alt="" class="popup__close">
+        <h3 class="popup__title">Вход</h3>
+        <form class="popup__form" name="signin" novalidate>
+          <div class="popup__container">
+            <label for="email" class="popup__label">Email</label>
+            <input type="email" name="email" class="popup__input" placeholder="Введите почту" required>
+            <span class="popup__span" for="email">Неправильный формат email</span>
+          </div>
+          <div class="popup__container">
+            <label for="email" class="popup__label">Пароль</label>
+            <input type="password" name="pass" class="popup__input" placeholder="Введите пароль" required>
+            <span class="popup__span" for="pass"></span>
+          </div>
+          <div class="popup__container">
+            <span class="popup__span" for="submit"></span>
+            <button type="submit" name="submit" class="button popup__button" disabled>Войти</button>
+          </div>
+        </form>
+        <p class="popup__text">или
+          <a class="popup__link" href="#">Зарегистрироваться</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="popup popup_success">
+      <div class="popup__content popup__content_flexed">
+        <img src="<%=require('./images/close.png').default%>" alt="" class="popup__close">
+        <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
+        <a class="popup__link" href="#">Выполнить вход</a>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>

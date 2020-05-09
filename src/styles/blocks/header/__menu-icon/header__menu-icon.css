@@ -11,5 +11,7 @@
 @media screen and (max-width: 700px) {
   .header__menu-icon {
     display: block;
+    position: relative;
+    z-index: 2;
   }
 }

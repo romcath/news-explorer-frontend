@@ -1,0 +1,7 @@
+.popup__container {
+  padding-bottom: 13px;
+}
+
+.popup__container:last-child {
+  padding: 35px 0 0;
+}

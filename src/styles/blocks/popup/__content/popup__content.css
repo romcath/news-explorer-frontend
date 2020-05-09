@@ -1,0 +1,17 @@
+@import url(./_flexed/popup__content_flexed.css);
+
+.popup__content {
+  width: 430px;
+  min-height: 182px;
+  background-color: #fff;
+  border-radius: 16px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 34px;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__content {
+    padding: 16px;
+  }
+}
