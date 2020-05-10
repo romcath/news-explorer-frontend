@@ -1,0 +1,8 @@
+.card .card__icon_save {
+  background-image: url(../../../../../images/save-icon.jpg);
+}
+
+.card .card__icon_save:hover {
+  background-image: url(../../../../../images/save-icon-hover.jpg);
+  cursor: pointer;
+}

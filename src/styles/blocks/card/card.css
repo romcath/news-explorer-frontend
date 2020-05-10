@@ -5,9 +5,10 @@
 @import url(./__text/card__text.css);
 @import url(./__title/card__title.css);
 @import url(./__save-container/card__save-container.css);
-@import url(./__save-icon/card__save-icon.css);
+@import url(./__icon/card__icon.css);
 @import url(./__notification/card__notification.css);
 @import url(./__show-button/card__show-button.css);
+@import url(./__tag/card__tag.css);
 
 .card {
   position: relative;

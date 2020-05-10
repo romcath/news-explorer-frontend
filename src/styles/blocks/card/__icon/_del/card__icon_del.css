@@ -1,0 +1,8 @@
+.card .card__icon_del {
+  background-image: url(../../../../../images/del-icon.jpg);
+}
+
+.card .card__icon_del:hover {
+  background-image: url(../../../../../images/del-icon-hover.jpg);
+  cursor: pointer;
+}

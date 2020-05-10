@@ -2,6 +2,7 @@
 @import url(./__list/menu__list.css);
 @import url(./__link/menu__link.css);
 @import url(./_mobile/menu_mobile.css);
+@import url(./_mobile_white/menu_mobile_white.css);
 
 .menu {
   display: flex;
