@@ -1,4 +1,5 @@
 @import url(./_white/logo_white.css);
+@import url(./_dark/logo_dark.css);
 
 .logo {
   font-family: 'Roboto Slab', serif;

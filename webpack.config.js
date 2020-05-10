@@ -8,11 +8,11 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 module.exports = {
   entry: {
     main: './src/scripts/index.js',
-    article: './src/pages/article/article.js'
+    articles: './src/scripts/articles.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name]/[name].[chunkhash].js',
+    filename: '[name]/[name].[hash].js',
   },
   module: {
     rules: [{
@@ -27,7 +27,7 @@ module.exports = {
     {
       test: /\.(png|jpg|gif|ico|svg)$/,
       use: [
-        'file-loader?name=./images/[name].[ext]',
+        'file-loader?name=./images/[name].[hash].[ext]',
         {
           loader: 'image-webpack-loader',
           options: {},
@@ -61,8 +61,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: false,
-      template: './src/pages/article/article.html',
-      filename: 'article/article.html',
+      template: './src/articles.html',
+      filename: './articles/articles.html',
     }),
     new WebpackMd5Hash(),
   ],

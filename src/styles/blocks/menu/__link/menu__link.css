@@ -1,6 +1,7 @@
-@import url(./_active/menu__link_active.css);
+@import url(./_active-white/menu__link__active-white.css);
+@import url(./_active-dark/menu__link_active-dark.css);
 @import url(./_white/menu__link_white.css);
-@import url(./_bordered/menu__link_bordered.css);
+@import url(./_dark/menu__link_dark.css);
 
 .menu__link {
   text-decoration: none;

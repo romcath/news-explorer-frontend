@@ -1,9 +1,0 @@
-.menu .menu__link_active {
-  padding-bottom: 26px;
-}
-
-@media screen and (max-width: 800px) {
-  .menu .menu__link_active {
-    padding-bottom: 28px;
-  }
-}

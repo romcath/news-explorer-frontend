@@ -3,6 +3,7 @@
 @import url(./__author/root__author.css);
 @import url(./__footer/root__footer.css);
 @import url(./__section/root__section.css);
+@import url(./__articles/root__articles.css);
 
 .root {
   max-width: 1440px;
@@ -14,4 +15,5 @@
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   margin: 0 auto;
+  background-color: #fff;
 }

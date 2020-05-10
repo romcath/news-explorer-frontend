@@ -7,7 +7,7 @@
   <meta name="description" content="Сервис для поиска новостей">
   <meta name="author" content="Катя Ромашкина">
   <link rel="icon" href="<%=require('./images/favicon.png').default%>">
-  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
+  <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.chunks.main.css %>">
   <title>Сервис для поиска новостей</title>
 </head>
 <body>
@@ -21,12 +21,7 @@
             <nav class="menu">
               <ul class="menu__list">
                 <li class="menu__item">
-                  <a href="#" class="menu__link menu__link_active menu__link_white menu__link_bordered">Главная</a>
-                </li>
-              </ul>
-              <ul class="menu__list">
-                <li class="menu__item">
-                  <a href="#" class="menu__link">Сохранённые статьи</a>
+                  <a href="#" class="menu__link menu__link_white menu__link_active-white">Главная</a>
                 </li>
               </ul>
               <button type="submit" name="submit" class="button button_mobile">Авторизоваться</button>
