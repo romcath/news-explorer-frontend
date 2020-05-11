@@ -2,7 +2,7 @@
 @import url(./_dark/logo_dark.css);
 
 .logo {
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Roboto Slab', 'Times New Roman', Times, serif;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;

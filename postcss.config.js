@@ -1,9 +1,10 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable global-require */
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+
 module.exports = {
   plugins: [
-    require('autoprefixer'),
-    require('cssnano')({
+    autoprefixer,
+    cssnano({
       preset: 'default',
     }),
   ],

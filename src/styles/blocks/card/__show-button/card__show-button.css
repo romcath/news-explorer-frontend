@@ -4,6 +4,12 @@
   color: #1a1b22;
   background-color: #fff;
   align-self: center;
+  transition: background-color .5s ease;
+}
+
+.card__show-button:hover {
+  background-color: #e8e8e9;
+  border: 1px solid #e8e8e9;
 }
 
 @media screen and (max-width: 800px) {

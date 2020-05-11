@@ -10,7 +10,7 @@
 }
 
 .menu.menu_mobile::before {
-  content: " ";
+  content: '';
   position: absolute;
   border-bottom: 1px solid #fff;
   top: 56px;

@@ -9,6 +9,11 @@
   background-size: cover;
   background-position: 50%;
   background-repeat: no-repeat;
+  transition: opacity .5s ease;
+}
+
+.footer__icon:hover {
+  opacity: .6;
 }
 
 .footer__icon:last-child {

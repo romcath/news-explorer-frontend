@@ -6,7 +6,7 @@
 @import url(./__title/search__title.css);
 
 .search {
-  background-image: url('../../../images/bg.jpg');
+  background-image: url(../../../images/bg.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -14,12 +14,12 @@
 
 @media screen and (max-width: 768px) {
   .search {
-    background-image: url('../../../images/bg_tablet.jpg');
+    background-image: url(../../../images/bg_tablet.jpg);
   }
 }
 
 @media screen and (max-width: 425px) {
   .search {
-    background-image: url('../../../images/bg_mobile.jpg');
+    background-image: url(../../../images/bg_mobile.jpg);
   }
 }
