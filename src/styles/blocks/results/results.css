@@ -1,5 +1,5 @@
 @import url(./__content/results__content.css);
-@import url(./_enable/results_enable.css);
+@import url(./_enabled/results_enabled.css);
 
 .results {
   background-color: #f5f6f7;
