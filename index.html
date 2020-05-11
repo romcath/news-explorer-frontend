@@ -16,12 +16,17 @@
       <header class="header">
         <div class="header__container">
           <a href="#" class="logo logo_white">NewsExplorer</a>
-          <img src="./images/menu.52f8f8e4e256ae7749d88dea77fb18a7.png" alt="" class="header__menu-icon">
+          <img src="./images/menu.52f8f8e4e256ae7749d88dea77fb18a7.png" alt="Меню" class="header__menu-icon">
           <div class="overlay">
             <nav class="menu">
               <ul class="menu__list">
                 <li class="menu__item">
                   <a href="#" class="menu__link menu__link_white menu__link_active-white">Главная</a>
+                </li>
+              </ul>
+              <ul class="menu__list">
+                <li class="menu__item">
+                  <a href="articles/articles.html" class="menu__link menu__link_white">Сохранённые статьи</a>
                 </li>
               </ul>
               <button type="submit" name="submit" class="button button_mobile">Авторизоваться</button>
@@ -58,7 +63,7 @@
           <h2 class="title">Результаты поиска</h2>
           <div class="cards root__cards">
             <article class="card">
-              <img class="card__image" src="./images/card_1.5cac9f2a11185cc89cc5badaec42f859.jpg" alt="">
+              <img class="card__image" src="./images/card_1.5cac9f2a11185cc89cc5badaec42f859.jpg" alt="Фото статьи">
               <div class="card__save-container">
                 <span class="card__notification">Войдите, чтобы сохранять статьи</span>
                 <button class="card__icon card__icon_save"></button>
@@ -74,7 +79,7 @@
             </article>
 
             <article class="card">
-              <img class="card__image" src="./images/card_2.5d079dbe73116897770fe7676904437f.jpg" alt="">
+              <img class="card__image" src="./images/card_2.5d079dbe73116897770fe7676904437f.jpg" alt="Фото статьи">
               <div class="card__save-container">
                 <span class="card__notification">Войдите, чтобы сохранять статьи</span>
                 <button class="card__icon card__icon_save"></button>
@@ -89,7 +94,7 @@
             </article>
 
             <article class="card">
-              <img class="card__image" src="./images/card_3.44f3261e2ca8715544f5a928acccc559.jpg" alt="">
+              <img class="card__image" src="./images/card_3.44f3261e2ca8715544f5a928acccc559.jpg" alt="Фото статьи">
               <div class="card__save-container">
                 <span class="card__notification">Войдите, чтобы сохранять статьи</span>
                 <button class="card__icon card__icon_save"></button>
@@ -113,7 +118,7 @@
           <picture>
             <source srcset="./images/avatar_middle.187e140935eae723147e5ff380ddc27d.png" media="(max-width: 1024px)">
             <source srcset="./images/avatar_tablet.3e7f251587364c8f5ac8882cd9fe2f9f.png" media="(max-width: 800px)">
-            <img src="./images/avatar.d2aaf534922f7fdb15e5128c00ff8a62.png" alt="Фото автора" class="author__avatar">
+            <img src="./images/avatar.d2aaf534922f7fdb15e5128c00ff8a62.png" alt="Автор" class="author__avatar">
           </picture>
           <div class="author__text-container">
             <h2 class="title">Об авторе</h2>
@@ -135,12 +140,12 @@
               <a href="#" class="menu__link footer__link">Главная</a>
             </li>
             <li class="menu__item">
-              <a href="#" class="menu__link footer__link">Яндекс.Практикум</a>
+              <a href="https://praktikum.yandex.ru" target="_blank" class="menu__link footer__link">Яндекс.Практикум</a>
             </li>
           </ul>
           <div class="footer__social">
-            <a href="#" class="footer__icon footer__icon_gh"></a>
-            <a href="#" class="footer__icon footer__icon_fb"></a>
+            <a href="https://github.com/romcath" target="_blank" class="footer__icon footer__icon_gh"></a>
+            <a href="https://www.facebook.com/" target="_blank" class="footer__icon footer__icon_fb"></a>
           </div>
         </nav>
       </footer>
@@ -148,7 +153,7 @@
 
     <div class="popup popup_signup">
       <div class="popup__content">
-        <img src="./images/close.73a6b79fb941250b2272009b93a4ea63.png" alt="" class="popup__close">
+        <img src="./images/close.73a6b79fb941250b2272009b93a4ea63.png" alt="Закрыть" class="popup__close">
         <h3 class="popup__title">Регистрация</h3>
         <form class="popup__form" name="signup" novalidate>
           <div class="popup__container">
@@ -179,7 +184,7 @@
 
     <div class="popup popup_signin">
       <div class="popup__content">
-        <img src="./images/close.73a6b79fb941250b2272009b93a4ea63.png" alt="" class="popup__close">
+        <img src="./images/close.73a6b79fb941250b2272009b93a4ea63.png" alt="Закрыть" class="popup__close">
         <h3 class="popup__title">Вход</h3>
         <form class="popup__form" name="signin" novalidate>
           <div class="popup__container">
@@ -205,7 +210,7 @@
 
     <div class="popup popup_success">
       <div class="popup__content popup__content_flexed">
-        <img src="./images/close.73a6b79fb941250b2272009b93a4ea63.png" alt="" class="popup__close">
+        <img src="./images/close.73a6b79fb941250b2272009b93a4ea63.png" alt="Закрыть" class="popup__close">
         <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
         <a class="popup__link" href="#">Выполнить вход</a>
       </div>
