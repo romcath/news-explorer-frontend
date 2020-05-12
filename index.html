@@ -7,7 +7,7 @@
   <meta name="description" content="Сервис для поиска новостей">
   <meta name="author" content="Катя Ромашкина">
   <link rel="icon" href="./images/favicon.004c6aba11e61c2a783548a43f5f1e1f.png">
-  <link rel="stylesheet" href="main/main.17f6d42d688b25162143.css">
+  <link rel="stylesheet" href="main/main.6aa7b2f2f3135ee7ca28.css">
   <title>Сервис для поиска новостей</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
                   <a href="#" class="menu__link menu__link_white menu__link_active-white">Главная</a>
                 </li>
               </ul>
-              <ul class="menu__list">
+              <!-- <ul class="menu__list">
                 <li class="menu__item">
                   <a href="articles/articles.html" class="menu__link">Сохранённые статьи</a>
                 </li>
@@ -32,11 +32,11 @@
               <button type="submit" name="submit" class="button button_logout button_mobile">
                 <span class="button__name">Грета</span>
                 <i class="icon icon_logout_white"></i>
-              </button>
-              <!-- <button type="submit" name="submit" class="button button_mobile">
+              </button> -->
+              <button type="submit" name="submit" class="button button_mobile">
                 <span class="button__name">Авторизоваться</span>
                 <i class="icon icon_disabled"></i>
-              </button> -->
+              </button>
             </nav>
           </div>
         </div>
@@ -52,7 +52,7 @@
     </section>
 
     <main class="content">
-      <section class="no-results no-results_enable root__section">
+      <section class="no-results root__section">
         <div class="no-results__container">
           <img src="./images/not-found.0b50279a3be1f6f33b863f3d256b505b.png" alt="Ничего не найдено" class="no-results___image">
           <h2 class="no-results__title">Ничего не найдено</h2>
@@ -60,12 +60,12 @@
         </div>
       </section>
 
-      <section class="preloader preloader_enabled root__section">
+      <section class="preloader root__section">
         <i class="preloader__circle"></i>
         <h2 class="text">Идет поиск новостей...</h2>
       </section>
 
-      <section class="results results_enabled root__results">
+      <section class="results root__results">
         <div class="results__content">
           <h2 class="title">Результаты поиска</h2>
           <div class="cards root__cards">
@@ -164,7 +164,7 @@
       </footer>
     </main>
 
-    <div class="popup popup_signup popup_is-opened">
+    <div class="popup popup_signup">
       <div class="popup__content">
         <img src="./images/close.717e676efa7efc801008cdda37da9cfb.png" alt="Закрыть" class="popup__close">
         <h3 class="popup__title">Регистрация</h3>
