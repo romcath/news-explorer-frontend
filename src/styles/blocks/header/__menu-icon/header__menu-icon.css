@@ -1,3 +1,5 @@
+@import url(./_disabled/header__menu-icon_disabled.css);
+
 .header__menu-icon {
   width: 24px;
   height: 24px;
