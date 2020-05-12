@@ -6,8 +6,8 @@
   <meta name="keywords" content="html, css, news, exploper">
   <meta name="description" content="Сервис для поиска новостей">
   <meta name="author" content="Катя Ромашкина">
-  <link rel="icon" href="./images/favicon.a9851453d32faad3850a6cff98a5a97c.png">
-  <link rel="stylesheet" href="main/main.c6db8300d23a18e14ae4.css">
+  <link rel="icon" href="./images/favicon.004c6aba11e61c2a783548a43f5f1e1f.png">
+  <link rel="stylesheet" href="main/main.17f6d42d688b25162143.css">
   <title>Сервис для поиска новостей</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
     <section class="search">
       <header class="header">
         <div class="header__container">
-          <a href="#" class="logo logo_white">NewsExplorer</a>
+          <h2 class="logo logo_white">NewsExplorer</h2>
           <img src="./images/menu.52f8f8e4e256ae7749d88dea77fb18a7.png" alt="Меню" class="header__menu-icon">
           <div class="overlay">
             <nav class="menu">
@@ -26,10 +26,17 @@
               </ul>
               <ul class="menu__list">
                 <li class="menu__item">
-                  <a href="articles/articles.html" class="menu__link menu__link_white">Сохранённые статьи</a>
+                  <a href="articles/articles.html" class="menu__link">Сохранённые статьи</a>
                 </li>
               </ul>
-              <button type="submit" name="submit" class="button button_mobile">Авторизоваться</button>
+              <button type="submit" name="submit" class="button button_logout button_mobile">
+                <span class="button__name">Грета</span>
+                <i class="icon icon_logout_white"></i>
+              </button>
+              <!-- <button type="submit" name="submit" class="button button_mobile">
+                <span class="button__name">Авторизоваться</span>
+                <i class="icon icon_disabled"></i>
+              </button> -->
             </nav>
           </div>
         </div>
@@ -47,65 +54,71 @@
     <main class="content">
       <section class="no-results no-results_enable root__section">
         <div class="no-results__container">
-          <img src="./images/not-found.8efd2cd9be4ed41e630df3fa522cde31.png" alt="Ничего не найдено" class="no-results___image">
+          <img src="./images/not-found.0b50279a3be1f6f33b863f3d256b505b.png" alt="Ничего не найдено" class="no-results___image">
           <h2 class="no-results__title">Ничего не найдено</h2>
           <p class="text">К сожалению по вашему запросу ничего не найдено.</p>
         </div>
       </section>
 
-      <section class="preloader preloader_enable root__section">
+      <section class="preloader preloader_enabled root__section">
         <i class="preloader__circle"></i>
-        <p class="text">Идет поиск новостей...</p>
+        <h2 class="text">Идет поиск новостей...</h2>
       </section>
 
-      <section class="results results_enable root__results">
+      <section class="results results_enabled root__results">
         <div class="results__content">
           <h2 class="title">Результаты поиска</h2>
           <div class="cards root__cards">
             <article class="card">
-              <img class="card__image" src="./images/card_1.5cac9f2a11185cc89cc5badaec42f859.jpg" alt="Фото статьи">
-              <div class="card__save-container">
-                <span class="card__notification">Войдите, чтобы сохранять статьи</span>
-                <button class="card__icon card__icon_save"></button>
-              </div>
-              <div class="card__content">
-                <p class="card__date">2 августа, 2019</p>
-                <p class="card__title">Национальное достояние — парки</p>
-                <p class="card__text">В 2016 году Америка отмечала важный юбилей:
-                  сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
-                  где и сегодня каждый может приобщиться к природе.</p>
-              </div>
-              <p class="card__source">Лента.ру</p>
-            </article>
-
-            <article class="card">
-              <img class="card__image" src="./images/card_2.5d079dbe73116897770fe7676904437f.jpg" alt="Фото статьи">
-              <div class="card__save-container">
-                <span class="card__notification">Войдите, чтобы сохранять статьи</span>
-                <button class="card__icon card__icon_save"></button>
-              </div>
-              <div class="card__content">
-                <p class="card__date">2 августа, 2019</p>
-                <p class="card__title">Лесные огоньки: история одной фотографии</p>
-                <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
-                  из местных чудес природы.</p>
-              </div>
-              <p class="card__source">Медуза</p>
-            </article>
-
-            <article class="card">
-              <img class="card__image" src="./images/card_3.44f3261e2ca8715544f5a928acccc559.jpg" alt="Фото статьи">
-              <div class="card__save-container">
-                <span class="card__notification">Войдите, чтобы сохранять статьи</span>
-                <button class="card__icon card__icon_save"></button>
-              </div>
-              <div class="card__content">
-                <p class="card__date">2 августа, 2019</p>
-                <p class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</p>
-                <p class="card__text">Знаменитый фотограф снимает первозданные леса России, чтобы рассказать
-                  о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
+              <a href="#" class="card__link">
+                <img class="card__image" src="./images/card_1.1c15e881481ef3f9a32ba0bedd251665.jpg" alt="Фото статьи">
+                <div class="card__save-container">
+                  <i class="card__icon card__icon_save card__icon_no-signup"></i>
+                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
                 </div>
-              <p class="card__source">Риа</p>
+                <div class="card__content">
+                  <p class="card__date">2 августа, 2019</p>
+                  <h3 class="card__title">Национальное достояние — парки</h3>
+                  <p class="card__text">В 2016 году Америка отмечала важный юбилей:
+                    сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
+                    где и сегодня каждый может приобщиться к природе.</p>
+                </div>
+                <p class="card__source">Лента.ру</p>
+              </a>
+            </article>
+
+            <article class="card">
+              <a href="#" class="card__link">
+                <img class="card__image" src="./images/card_2.fce24681ab1e60472799c6f34d01a7c4.jpg" alt="Фото статьи">
+                <div class="card__save-container">
+                  <i class="card__icon card__icon_save"></i>
+                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
+                </div>
+                <div class="card__content">
+                  <p class="card__date">2 августа, 2019</p>
+                  <h3 class="card__title">Лесные огоньки: история одной фотографии</h3>
+                  <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
+                    из местных чудес природы.</p>
+                </div>
+                <p class="card__source">Медуза</p>
+              </a>
+            </article>
+
+            <article class="card">
+              <a href="#" class="card__link">
+                <img class="card__image" src="./images/card_3.48567a3f0a2e74ccfe094c4cdbb2fbfe.jpg" alt="Фото статьи">
+                <div class="card__save-container">
+                  <i class="card__icon card__icon_marked"></i>
+                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
+                </div>
+                <div class="card__content">
+                  <p class="card__date">2 августа, 2019</p>
+                  <h3 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h3>
+                  <p class="card__text">Знаменитый фотограф снимает первозданные леса России, чтобы рассказать
+                    о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
+                  </div>
+                <p class="card__source">Риа</p>
+              </a>
             </article>
 
           </div>
@@ -116,9 +129,9 @@
       <section class="author root__author">
         <div class="author__container">
           <picture>
-            <source srcset="./images/avatar_middle.187e140935eae723147e5ff380ddc27d.png" media="(max-width: 1024px)">
-            <source srcset="./images/avatar_tablet.3e7f251587364c8f5ac8882cd9fe2f9f.png" media="(max-width: 800px)">
-            <img src="./images/avatar.d2aaf534922f7fdb15e5128c00ff8a62.png" alt="Автор" class="author__avatar">
+            <source srcset="./images/avatar_middle.c2c9910b004178a3902486f9e697f2df.png" media="(max-width: 1024px)">
+            <source srcset="./images/avatar_tablet.408a9ed4c55e5f40d155df30be5471a5.png" media="(max-width: 800px)">
+            <img src="./images/avatar.4fe3f6229c4948fe4ee26826d5f27847.png" alt="Автор" class="author__avatar">
           </picture>
           <div class="author__text-container">
             <h2 class="title">Об авторе</h2>
@@ -151,28 +164,28 @@
       </footer>
     </main>
 
-    <div class="popup popup_signup">
+    <div class="popup popup_signup popup_is-opened">
       <div class="popup__content">
-        <img src="./images/close.73a6b79fb941250b2272009b93a4ea63.png" alt="Закрыть" class="popup__close">
+        <img src="./images/close.717e676efa7efc801008cdda37da9cfb.png" alt="Закрыть" class="popup__close">
         <h3 class="popup__title">Регистрация</h3>
         <form class="popup__form" name="signup" novalidate>
           <div class="popup__container">
-            <label for="email" class="popup__label">Email</label>
-            <input type="email" name="email" class="popup__input" placeholder="Введите почту" required>
-            <span class="popup__span" for="email">Неправильный формат email</span>
+            <label for="signup-email" class="popup__label">Email</label>
+            <input type="email" id="signup-email" class="popup__input" placeholder="Введите почту" pattern="^[\w\-\.]{2,}@([\w\-]{1,63}\.)*[\w\-]{2,63}\.[a-z]{2,}$" required>
+            <span class="popup__span">Неправильный формат email</span>
           </div>
           <div class="popup__container">
-            <label for="email" class="popup__label">Пароль</label>
-            <input type="password" name="pass" class="popup__input" placeholder="Введите пароль" required>
-            <span class="popup__span" for="pass"></span>
+            <label for="signup-pass" class="popup__label">Пароль</label>
+            <input type="password" id="signup-pass" class="popup__input" placeholder="Введите пароль" minlength="8" required>
+            <span class="popup__span"></span>
           </div>
           <div class="popup__container">
-            <label for="name" class="popup__label">Имя</label>
-            <input type="text" name="name" class="popup__input" placeholder="Введите своё имя" required>
-            <span class="popup__span" for="name"></span>
+            <label for="signup-name" class="popup__label">Имя</label>
+            <input type="text" id="signup-name" class="popup__input" placeholder="Введите своё имя" minlength="2" maxlength="30" required>
+            <span class="popup__span"></span>
           </div>
           <div class="popup__container">
-            <span class="popup__span popup__span_center" for="submit">Такой пользователь уже есть</span>
+            <span class="popup__span popup__span_center">Такой пользователь уже есть</span>
             <button type="submit" name="submit" class="button popup__button" disabled>Зарегистрироваться</button>
           </div>
         </form>
@@ -184,21 +197,21 @@
 
     <div class="popup popup_signin">
       <div class="popup__content">
-        <img src="./images/close.73a6b79fb941250b2272009b93a4ea63.png" alt="Закрыть" class="popup__close">
+        <img src="./images/close.717e676efa7efc801008cdda37da9cfb.png" alt="Закрыть" class="popup__close">
         <h3 class="popup__title">Вход</h3>
         <form class="popup__form" name="signin" novalidate>
           <div class="popup__container">
-            <label for="email" class="popup__label">Email</label>
-            <input type="email" name="email" class="popup__input" placeholder="Введите почту" required>
-            <span class="popup__span" for="email">Неправильный формат email</span>
+            <label for="signin-email" class="popup__label">Email</label>
+            <input type="email" id="signin-email" class="popup__input" placeholder="Введите почту" pattern="^[\w\-\.]{2,}@([\w\-]{1,63}\.)*[\w\-]{2,63}\.[a-z]{2,}$" required>
+            <span class="popup__span">Неправильный формат email</span>
           </div>
           <div class="popup__container">
-            <label for="email" class="popup__label">Пароль</label>
-            <input type="password" name="pass" class="popup__input" placeholder="Введите пароль" required>
-            <span class="popup__span" for="pass"></span>
+            <label for="signin-pass" class="popup__label">Пароль</label>
+            <input type="password" id="signin-pass" class="popup__input" placeholder="Введите пароль" minlength="8" required>
+            <span class="popup__span"></span>
           </div>
           <div class="popup__container">
-            <span class="popup__span" for="submit"></span>
+            <span class="popup__span"></span>
             <button type="submit" name="submit" class="button popup__button" disabled>Войти</button>
           </div>
         </form>
@@ -210,7 +223,7 @@
 
     <div class="popup popup_success">
       <div class="popup__content popup__content_flexed">
-        <img src="./images/close.73a6b79fb941250b2272009b93a4ea63.png" alt="Закрыть" class="popup__close">
+        <img src="./images/close.717e676efa7efc801008cdda37da9cfb.png" alt="Закрыть" class="popup__close">
         <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
         <a class="popup__link" href="#">Выполнить вход</a>
       </div>
