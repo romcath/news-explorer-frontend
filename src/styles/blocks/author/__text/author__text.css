@@ -1,0 +1,9 @@
+.author__text {
+  padding-top: 24px;
+}
+
+@media screen and (max-width: 800px) {
+  .author__text {
+    padding-top: 16px;
+  }
+}

@@ -1,0 +1,5 @@
+.popup .popup__content_flexed {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

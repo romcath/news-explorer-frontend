@@ -1,0 +1,5 @@
+@import url(./__container/author__container.css);
+@import url(./__text-container/author__text-container.css);
+@import url(./__avatar/author__avatar.css);
+@import url(./__text/author__text.css);
+@import url(./__paragraph/author__paragraph.css);

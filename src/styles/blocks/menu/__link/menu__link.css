@@ -1,0 +1,30 @@
+@import url(./_active-white/menu__link__active-white.css);
+@import url(./_active-dark/menu__link_active-dark.css);
+@import url(./_white/menu__link_white.css);
+@import url(./_dark/menu__link_dark.css);
+
+.menu__link {
+  text-decoration: none;
+  color: #b6bcbf;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  transition: opacity .5s ease;
+}
+
+.menu__link:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 800px) {
+  .menu__link {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .menu__link {
+    color: #fff;
+    font-size: 18px;
+  }
+}

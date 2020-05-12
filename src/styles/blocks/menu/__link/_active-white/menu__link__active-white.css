@@ -1,0 +1,16 @@
+.menu .menu__link_active-white {
+  padding-bottom: 26px;
+  border-bottom: 4px solid #fff;
+}
+
+@media screen and (max-width: 800px) {
+  .menu .menu__link_active-white{
+    padding-bottom: 28px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .menu .menu__link_active-white{
+    border: 0;
+  }
+}

@@ -1,0 +1,11 @@
+.author__paragraph {
+  margin: 0 0 15px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.author__paragraph:last-child {
+  margin-bottom: 0;
+}

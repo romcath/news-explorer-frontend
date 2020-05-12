@@ -1,0 +1,28 @@
+.card__title {
+  font-family: 'Roboto Slab', 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 30px;
+  color: #1a1b22;
+  margin: 0 0 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 990px) {
+  .card__title {
+    font-size: 22px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    -webkit-line-clamp: 3;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .card__title {
+    -webkit-line-clamp: 2;
+  }
+}

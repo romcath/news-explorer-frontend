@@ -1,0 +1,19 @@
+@import url(./__text/footer__text.css);
+@import url(./__icon/footer__icon.css);
+@import url(./__social/footer__social.css);
+@import url(./__menu/footer__menu.css);
+@import url(./__link/footer__link.css);
+
+.footer {
+  min-height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+  .footer {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+}

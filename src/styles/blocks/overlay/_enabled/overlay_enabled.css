@@ -1,0 +1,4 @@
+.overlay.overlay_enabled {
+  display: block;
+  z-index: 1;
+}

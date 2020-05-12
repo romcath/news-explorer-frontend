@@ -1,0 +1,7 @@
+.menu.menu_mobile_white {
+  background-color: #fff;
+}
+
+.menu.menu_mobile::before {
+  border-bottom: 1px solid #1a1b22;
+}

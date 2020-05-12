@@ -1,0 +1,16 @@
+@import url(./_disabled/header__menu-icon_disabled.css);
+
+.header__menu-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+@media screen and (max-width: 700px) {
+  .header__menu-icon {
+    display: block;
+    position: relative;
+    z-index: 2;
+  }
+}

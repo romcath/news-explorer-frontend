@@ -1,0 +1,4 @@
+.card .card__icon_no-signup:hover + .card__notification {
+  display: inline-flex;
+  align-items: center;
+}

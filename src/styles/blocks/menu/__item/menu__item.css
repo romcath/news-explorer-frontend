@@ -1,0 +1,15 @@
+.menu__item {
+  padding-right: 34px;
+}
+
+@media screen and (max-width: 768px) {
+  .menu__item {
+    padding-right: 16px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .menu__item {
+    padding: 0 0 38px;
+  }
+}

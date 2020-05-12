@@ -1,0 +1,17 @@
+@import url(./_del/card__icon_del.css);
+@import url(./_save/card__icon_save.css);
+@import url(./_marked/card__icon_marked.css);
+@import url(./_no-signup/card__icon_no-signup.css);
+
+.card__icon {
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
+  order: 1;
+}
+
+@media screen and (max-width: 990px) {
+  .card__icon {
+    align-self: flex-end;
+  }
+}

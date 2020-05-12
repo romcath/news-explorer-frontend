@@ -1,0 +1,28 @@
+.card__show-button {
+  width: 288px;
+  height: 64px;
+  color: #1a1b22;
+  background-color: #fff;
+  align-self: center;
+  transition: background-color .5s ease;
+}
+
+.card__show-button:hover {
+  background-color: #e8e8e9;
+  border: 1px solid #e8e8e9;
+}
+
+@media screen and (max-width: 800px) {
+  .card__show-button {
+    width: 240px;
+    height: 56px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .card__show-button {
+    width: 288px;
+  }
+}
