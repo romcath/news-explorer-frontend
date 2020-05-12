@@ -1,6 +1,6 @@
 {
   "name": "news-explorer-frontend",
-  "version": "1.0.11",
+  "version": "1.0.16",
   "description": "Frontend for service NewsExplorer",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "explorer",
     "html",
     "css",
-    "JavaScript"
+    "javascript"
   ],
   "author": "Kate Romashkina",
   "license": "ISC",
