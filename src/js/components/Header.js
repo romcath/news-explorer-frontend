@@ -1,20 +1,20 @@
-export default class Header {
-  constructor({ ...props }) {
-    this._props = props;
-    this._container = this._props.container;
-    this._theme = this._props.theme;
-    this._logoElement = this._props.logo;
+import BaseComponent from './BaseComponent';
 
-    this._authorizedTemplate = document.querySelector(this._props.authorizedTemplate).content.querySelector('.menu');
+export default class Header extends BaseComponent {
+  constructor({ ...props }) {
+    super();
+    this._props = props;
+    this._container = this._props.MENU_CONTAINER;
+    this._theme = this._props.theme;
+    this._logoElement = this._props.LOGO_ELEMENT;
+
+    this._authorizedTemplate = document.querySelector(this._props.MENU_AUTH_TEMPLATE_ID).content.querySelector('.menu');
     this._authorizedElement = this._authorizedTemplate.cloneNode(true);
 
-    this._unauthorizedTemplate = document.querySelector(this._props.unauthorizedTemplate).content.querySelector('.menu');
+    this._unauthorizedTemplate = document.querySelector(this._props.MENU_UNAUTH_TEMPLATE_ID).content.querySelector('.menu');
     this._unauthorizedElement = this._unauthorizedTemplate.cloneNode(true);
 
-    this._openHandlerCallback = this._props.openHandlerCallback || (() => {});
-    this._logoutHandlerCallback = this._props.logoutHandlerCallback || (() => {});
-
-    this._openHandlerCallback = this._openHandlerCallback.bind(this);
+    this._openHandlerCallback = this._props.openHandlerCallback.bind(this);
     // this._logoutHandlerCallback = this.logoutHandlerCallback.bind(this);
   }
 
@@ -30,27 +30,28 @@ export default class Header {
   }
 
   _addClassElement(element) {
-    const icon = element.querySelector('.icon');
-    const button = element.querySelector('.button');
-    const link = element.querySelector('.menu__link');
+    const iconElement = element.querySelector('.icon');
+    const buttonElement = element.querySelector('.button');
+    const linkElement = element.querySelector('.menu__link');
 
     this._logoElement.classList.add(`logo_${this._theme}`);
-    icon.classList.add(`icon_logout_${this._theme}`);
-    button.classList.add(`button_${this._theme}`);
-    link.classList.add(`menu__link_${this._theme}`, `menu__link_active-${this._theme}`);
+    iconElement.classList.add(`icon_logout_${this._theme}`);
+    buttonElement.classList.add(`button_${this._theme}`);
+    linkElement.classList.add(`menu__link_${this._theme}`, `menu__link_active-${this._theme}`);
 
-    this._setEventListeners(element, button, icon);
+    this._setEventListeners(element, buttonElement, iconElement);
   }
 
   _setEventListeners(element, button, icon) {
+
     if (element === this._unauthorizedElement) {
-      button.addEventListener('click', () => {
-        this._openHandlerCallback();
-      });
+      this._setHandlers([
+        [button, 'click', this._openHandlerCallback]
+      ])
     } else {
-      icon.addEventListener('click', () => {
-        this._logoutHandlerCallback();
-      });
+      this._setHandlers([
+        [icon, 'click', this._logoutHandlerCallback]
+      ])
     }
   }
 }

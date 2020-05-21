@@ -175,76 +175,70 @@
       </footer>
     </main>
 
-    <template id="signup-popup-template">
-      <div class="popup">
-        <div class="popup__content">
-          <img src="<%=require('./images/close.png').default%>" alt="Закрыть" class="popup__close">
-          <h3 class="popup__title">Регистрация</h3>
-          <form class="popup__form" name="signup" novalidate>
-            <div class="popup__container">
-              <label for="signup-email" class="popup__label">Email</label>
-              <input type="email" id="signup-email" class="popup__input" placeholder="Введите почту" pattern="^[\w\-\.]{2,}@([\w\-]{1,63}\.)*[\w\-]{2,63}\.[a-z]{2,}$" required>
-              <span class="popup__span" id="signup-email-error"></span>
-            </div>
-            <div class="popup__container">
-              <label for="signup-pass" class="popup__label">Пароль</label>
-              <input type="password" id="signup-pass" class="popup__input" placeholder="Введите пароль" minlength="8" required>
-              <span class="popup__span" id="signup-pass-error"></span>
-            </div>
-            <div class="popup__container">
-              <label for="signup-name" class="popup__label">Имя</label>
-              <input type="text" id="signup-name" class="popup__input" placeholder="Введите своё имя" minlength="2" maxlength="30" required>
-              <span class="popup__span" id="signup-name-error" ></span>
-            </div>
-            <div class="popup__container">
-              <span class="popup__span popup__span_center"></span>
-              <button type="submit" name="submit" class="button popup__button" disabled>Зарегистрироваться</button>
-            </div>
-          </form>
-          <p class="popup__text">или
-            <a class="popup__link" href="#">Войти</a>
-          </p>
-        </div>
+    <div class="popup">
+      <div class="popup__content">
+        <img src="<%=require('./images/close.png').default%>" alt="Закрыть" class="popup__close">
+        <template id="signup-popup-template">
+          <div class="popup__template-container">
+            <h3 class="popup__title">Регистрация</h3>
+            <form class="popup__form" name="signup" novalidate>
+              <div class="popup__container">
+                <label for="signup_email" class="popup__label">Email</label>
+                <input type="email" id="signup_email" class="popup__input" placeholder="Введите почту" pattern="^[\w\-\.]{2,}@([\w\-]{1,63}\.)*[\w\-]{2,63}\.[a-z]{2,}$" required>
+                <span class="popup__span" id="signup_email_error"></span>
+              </div>
+              <div class="popup__container">
+                <label for="signup_pass" class="popup__label">Пароль</label>
+                <input type="password" id="signup_pass" class="popup__input" placeholder="Введите пароль" minlength="8" required>
+                <span class="popup__span" id="signup_pass_error"></span>
+              </div>
+              <div class="popup__container">
+                <label for="signup_name" class="popup__label">Имя</label>
+                <input type="text" id="signup_name" class="popup__input" placeholder="Введите своё имя" minlength="2" maxlength="30" required>
+                <span class="popup__span" id="signup_name_error" ></span>
+              </div>
+              <div class="popup__container">
+                <span class="popup__span popup__span_center"></span>
+                <button type="submit" name="submit" class="button popup__button" disabled>Зарегистрироваться</button>
+              </div>
+            </form>
+            <p class="popup__text">или
+              <a class="popup__link popup__link_signin" href="#">Войти</a>
+            </p>
+          </div>
+        </template>
+        <template id="signin-popup-template">
+          <div class="popup__template-container">
+            <h3 class="popup__title">Вход</h3>
+            <form class="popup__form" name="signin" novalidate>
+              <div class="popup__container">
+                <label for="signin_email" class="popup__label">Email</label>
+                <input type="email" id="signin_email" class="popup__input" placeholder="Введите почту" pattern="^[\w\-\.]{2,}@([\w\-]{1,63}\.)*[\w\-]{2,63}\.[a-z]{2,}$" required>
+                <span class="popup__span" id="signin_email_error"></span>
+              </div>
+              <div class="popup__container">
+                <label for="signin_pass" class="popup__label">Пароль</label>
+                <input type="password" id="signin_pass" class="popup__input" placeholder="Введите пароль" minlength="8" required>
+                <span class="popup__span" id="signin_pass_error"></span>
+              </div>
+              <div class="popup__container">
+                <span class="popup__span popup__span_center"></span>
+                <button type="submit" name="submit" class="button popup__button" disabled>Войти</button>
+              </div>
+            </form>
+            <p class="popup__text">или
+              <a class="popup__link" href="#">Зарегистрироваться</a>
+            </p>
+          </div>
+        </template>
+        <template id="success-popup-template">
+          <div class="popup__template-container">
+            <h3 class="popup__title popup__title_success">Пользователь успешно зарегистрирован!</h3>
+            <a class="popup__link popup__link_signin" href="#">Выполнить вход</a>
+          </div>
+        </template>
       </div>
-    </template>
-
-    <template id="signin-popup-template">
-      <div class="popup">
-        <div class="popup__content">
-          <img src="<%=require('./images/close.png').default%>" alt="Закрыть" class="popup__close">
-          <h3 class="popup__title">Вход</h3>
-          <form class="popup__form" name="signin" novalidate>
-            <div class="popup__container">
-              <label for="signin-email" class="popup__label">Email</label>
-              <input type="email" id="signin-email" class="popup__input" placeholder="Введите почту" pattern="^[\w\-\.]{2,}@([\w\-]{1,63}\.)*[\w\-]{2,63}\.[a-z]{2,}$" required>
-              <span class="popup__span" id="signin-email-error"></span>
-            </div>
-            <div class="popup__container">
-              <label for="signin-pass" class="popup__label">Пароль</label>
-              <input type="password" id="signin-pass" class="popup__input" placeholder="Введите пароль" minlength="8" required>
-              <span class="popup__span" id="signin-pass-error"></span>
-            </div>
-            <div class="popup__container">
-              <span class="popup__span"></span>
-              <button type="submit" name="submit" class="button popup__button" disabled>Войти</button>
-            </div>
-          </form>
-          <p class="popup__text">или
-            <a class="popup__link" href="#">Зарегистрироваться</a>
-          </p>
-        </div>
-      </div>
-    </template>
-
-    <template id="success-popup-template">
-      <div class="popup">
-        <div class="popup__content popup__content_flexed">
-          <img src="<%=require('./images/close.png').default%>" alt="Закрыть" class="popup__close">
-          <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
-          <a class="popup__link" href="#">Выполнить вход</a>
-        </div>
-      </div>
-    </template>
+    </div>
 
   </div>
   <script type="module" src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>

@@ -1,46 +1,42 @@
-export default class Popup {
-  constructor(selector, container, openPopupCallback) {
-    this._selector = selector;
-    this._container = container;
+import BaseComponent from './BaseComponent';
 
-    this._openPopupCallback = openPopupCallback || (() => {});
-    this._openPopupCallback = this._openPopupCallback.bind(this);
+export default class Popup extends BaseComponent {
+  constructor(popupElement, signinTemplate, signupTemplate, validation) {
+    super();
+    this._popupElement = popupElement;
+    this._signinTemplate = signinTemplate;
+    this._signupTemplate = signupTemplate;
+    this._validation = validation;
+
     this._handleEscClose = this._handleEscClose.bind(this);
+    this._openPopupCallback = this._openPopupCallback.bind(this);
+    this.close = this.close.bind(this);
   }
 
-  setContent() {
-    this._template = document.querySelector(this._selector).content.querySelector('.popup');
+  setContent(selector) {
+    this._template = document.querySelector(selector).content.querySelector('.popup__template-container');
     this._element = this._template.cloneNode(true);
+    this._popupElement.querySelector('.popup__content').appendChild(this._element);
     this._setEventListeners();
-    return this._element.querySelector('.popup__form');
+    this.open();
+    
+    if (selector !== '#success-popup-template') {
+      this._validation.render(this._element.querySelector('.popup__form'));
+    }
+  }
+
+  clearContent() {
+    this._popupElement.querySelector('.popup__template-container').remove();
   }
 
   open() {
-    this._element.classList.add('popup_is-opened');
-    this._container.appendChild(this._element);
-    document.addEventListener('keyup', this._handleEscClose);
+    this._popupElement.classList.add('popup_is-opened');
   }
 
   close() {
-    const form = this._element.querySelector('.popup__form');
-
-    this._element.classList.remove('popup_is-opened');
+    this._popupElement.classList.remove('popup_is-opened');
     this._element.remove();
-    document.removeEventListener('keyup', this._handleEscClose);
-
-    form.reset();
-    this._clear(form);
-  }
-
-  _setEventListeners() {
-    this._element.querySelector('.popup__close').addEventListener('click', () => {
-      this.close();
-    });
-
-    this._element.querySelector('.popup__link').addEventListener('click', () => {
-      this.close();
-      this._openPopupCallback();
-    });
+    this._clearHandlers(document, 'keyup', this._handleEscClose);
   }
 
   _handleEscClose(event) {
@@ -51,11 +47,21 @@ export default class Popup {
     }
   }
 
-  _clear(form) {
-    const spanList = Array.from(form.querySelectorAll('.popup__span'));
+  _openPopupCallback() {
+    this.clearContent();
 
-    spanList.forEach((spanElement) => {
-      spanElement.textContent = '';
-    });
+    if (event.target.classList.contains('popup__link_signin')) {
+      this.setContent(this._signinTemplate);
+    } else {
+      this.setContent(this._signupTemplate);
+    }
+  }
+
+  _setEventListeners() {
+    this._setHandlers([
+      [document, 'keyup', this._handleEscClose],
+      [this._popupElement.querySelector('.popup__close'), 'click', this.close],
+      [this._element.querySelector('.popup__link'), 'click', this._openPopupCallback],
+    ])
   }
 }
