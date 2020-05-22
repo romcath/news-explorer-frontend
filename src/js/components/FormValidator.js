@@ -3,13 +3,16 @@
 import BaseComponent from './BaseComponent';
 
 export default class FormValidator extends BaseComponent {
-  constructor({ ...props }) {
+  constructor(words, singupHandlerCallback, singinHandlerCallback) {
     super();
-    this._props = props;
-    this._words = this._props.FORM_ERRORS;
+    this._words = words;
 
-    this._singupHandlerCallback = this._props.singupHandlerCallback.bind(this);
-    this._singinHandlerCallback = this._props.singinHandlerCallback.bind(this);
+    this._singupHandlerCallback = singupHandlerCallback || (() => {});
+    this._singupHandlerCallback = this._singupHandlerCallback.bind(this);
+
+    this._singinHandlerCallback = singinHandlerCallback || (() => {});
+    this._singinHandlerCallback = this._singinHandlerCallback.bind(this);
+
     this._validateInputElement = this._validateInputElement.bind(this);
     this._toggleButtonState = this._toggleButtonState.bind(this);
   }
@@ -18,7 +21,21 @@ export default class FormValidator extends BaseComponent {
     this._setEventListeners(formElement);
   }
 
-  setServerError(error) {
+  handleServerError(err) {
+    if (err.message === 'Failed to fetch') {
+      this._setServerError('Запрос не отправлен. Проблемы с Интернетом');
+    } else {
+      err.json()
+        .then((result) => {
+          this._setServerError(result.message);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }
+
+  _setServerError(error) {
     const spanButton = document.querySelector('.popup__span_center');
     spanButton.textContent = error;
   }
@@ -65,6 +82,7 @@ export default class FormValidator extends BaseComponent {
   _toggleButtonState() {
     const inputList = Array.from(event.currentTarget.querySelectorAll('.popup__input'));
     const buttonElement = event.currentTarget.querySelector('.popup__button');
+
     buttonElement.previousElementSibling.textContent = '';
 
     if (this._validateForm(inputList)) {
@@ -96,5 +114,4 @@ export default class FormValidator extends BaseComponent {
       return formValue;
     }
   }
-
 }

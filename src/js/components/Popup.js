@@ -8,18 +8,21 @@ export default class Popup extends BaseComponent {
     this._signupTemplate = signupTemplate;
     this._validation = validation;
 
+    this._closeButton = this._popupElement.querySelector('.popup__close');
+
     this._handleEscClose = this._handleEscClose.bind(this);
     this._openPopupCallback = this._openPopupCallback.bind(this);
-    this.close = this.close.bind(this);
+    this._close = this.close.bind(this);
   }
 
   setContent(selector) {
     this._template = document.querySelector(selector).content.querySelector('.popup__template-container');
     this._element = this._template.cloneNode(true);
+    this._link = this._element.querySelector('.popup__link');
     this._popupElement.querySelector('.popup__content').appendChild(this._element);
     this._setEventListeners();
     this.open();
-    
+
     if (selector !== '#success-popup-template') {
       this._validation.render(this._element.querySelector('.popup__form'));
     }
@@ -27,6 +30,7 @@ export default class Popup extends BaseComponent {
 
   clearContent() {
     this._popupElement.querySelector('.popup__template-container').remove();
+    this._clearHandlers(this._link, 'click', this._openPopupCallback);
   }
 
   open() {
@@ -37,6 +41,7 @@ export default class Popup extends BaseComponent {
     this._popupElement.classList.remove('popup_is-opened');
     this._element.remove();
     this._clearHandlers(document, 'keyup', this._handleEscClose);
+    this._clearHandlers(this._closeButton, 'click', this._close);
   }
 
   _handleEscClose(event) {
@@ -60,8 +65,8 @@ export default class Popup extends BaseComponent {
   _setEventListeners() {
     this._setHandlers([
       [document, 'keyup', this._handleEscClose],
-      [this._popupElement.querySelector('.popup__close'), 'click', this.close],
-      [this._element.querySelector('.popup__link'), 'click', this._openPopupCallback],
+      [this._closeButton, 'click', this._close],
+      [this._link, 'click', this._openPopupCallback],
     ])
   }
 }

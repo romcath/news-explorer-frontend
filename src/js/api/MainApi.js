@@ -5,52 +5,54 @@ export default class MainApi {
 
   signup(email, password, name) {
     return fetch(`${this._options.baseUrl}/signup`, {
+      redirect: 'follow',
+      credentials: 'include',
       method: 'POST',
       headers: this._options.headers,
       body: JSON.stringify({
         email, password, name,
       }),
     })
-    .then((res) => {
-      return res.json();
-    })
-    .catch((err) => {
-      return Promise.reject('Пользователь не зарегистрирован');
-    })
+    .then(res => res.ok ? res.json() : Promise.reject(res))
+    .catch(err => Promise.reject(err));
   }
 
   signin(email, password) {
     return fetch(`${this._options.baseUrl}/signin`, {
+      redirect: 'follow',
+      credentials: 'include',
       method: 'POST',
       headers: this._options.headers,
       body: JSON.stringify({
         email, password,
       }),
     })
-    .then((res) => {
-      return res.json();
+    .then(res => res.ok ? res.json() : Promise.reject(res))
+    .catch(err => Promise.reject(err));
+  }
+
+  logout() {
+    return fetch(`${this._options.baseUrl}/logout`, {
+      redirect: 'follow',
+      credentials: 'include',
+      method: 'POST',
+      headers: this._options.headers,
+      body: JSON.stringify({
+      }),
     })
-    .catch((err) => {
-      return Promise.reject('Сервер не отвечает');
-    })
+    .then(res => res.ok ? res.json() : Promise.reject(res))
+    .catch(err => Promise.reject(err));
   }
 
   getUserData() {
     return fetch(`${this._options.baseUrl}/users/me`, {
-      method: 'GET',
+      redirect: 'follow',
       credentials: 'include',
+      method: 'GET',
       headers: this._options.headers,
     })
-     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(res);
-    })
-    .catch((err) => {
-      return Promise.reject(err.status);
-    })
+    .then(res => res.ok ? res.json() : Promise.reject(res))
+    .catch(err => Promise.reject(err.status));
   }
-
 }
 

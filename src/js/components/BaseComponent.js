@@ -16,10 +16,4 @@ export default class BaseComponent {
   _clearHandlers(element, event, handler) {
     element.removeEventListener(event, handler);
   }
-
-  // _clearHandlers() {
-  //   this._handlers.forEach(({ element, event, handler }) => {
-  //     element.removeEventListener(event, handler)
-  //   })
-  // }
 }

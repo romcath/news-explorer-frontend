@@ -15,42 +15,47 @@ export default class Header extends BaseComponent {
     this._unauthorizedElement = this._unauthorizedTemplate.cloneNode(true);
 
     this._openHandlerCallback = this._props.openHandlerCallback.bind(this);
-    // this._logoutHandlerCallback = this.logoutHandlerCallback.bind(this);
+    this._logoutHandlerCallback = this._props.logoutHandlerCallback.bind(this);
   }
 
   render(isLoggedIn, userName) {
     if (isLoggedIn) {
+      this._clearElement(this._unauthorizedElement);
       this._addClassElement(this._authorizedElement);
       this._authorizedElement.querySelector('.button__name').textContent = userName;
       this._container.appendChild(this._authorizedElement);
     } else {
+      this._clearElement(this._authorizedElement);
       this._addClassElement(this._unauthorizedElement);
       this._container.appendChild(this._unauthorizedElement);
     }
   }
 
-  _addClassElement(element) {
-    const iconElement = element.querySelector('.icon');
-    const buttonElement = element.querySelector('.button');
-    const linkElement = element.querySelector('.menu__link');
-
-    this._logoElement.classList.add(`logo_${this._theme}`);
-    iconElement.classList.add(`icon_logout_${this._theme}`);
-    buttonElement.classList.add(`button_${this._theme}`);
-    linkElement.classList.add(`menu__link_${this._theme}`, `menu__link_active-${this._theme}`);
-
-    this._setEventListeners(element, buttonElement, iconElement);
+  _clearElement(element) {
+    element.remove();
   }
 
-  _setEventListeners(element, button, icon) {
+  _addClassElement(element) {
+    this._iconElement = element.querySelector('.icon');
+    this._buttonElement = element.querySelector('.button');
+    this._linkElement = element.querySelector('.menu__link');
 
+    this._logoElement.classList.add(`logo_${this._theme}`);
+    this._iconElement.classList.add(`icon_logout_${this._theme}`);
+    this._buttonElement.classList.add(`button_${this._theme}`);
+    this._linkElement.classList.add(`menu__link_${this._theme}`, `menu__link_active-${this._theme}`);
+
+    this._setEventListeners(element);
+  }
+
+  _setEventListeners(element) {
     if (element === this._unauthorizedElement) {
       this._setHandlers([
-        [button, 'click', this._openHandlerCallback]
+        [this._buttonElement, 'click', this._openHandlerCallback]
       ])
     } else {
       this._setHandlers([
-        [icon, 'click', this._logoutHandlerCallback]
+        [this._iconElement, 'click', this._logoutHandlerCallback]
       ])
     }
   }
