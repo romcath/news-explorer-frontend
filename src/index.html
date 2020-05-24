@@ -56,7 +56,7 @@
         <h1 class="search__title">Что в мире творится?</h1>
         <p class="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
         <form class="search__form" name="explorer" novalidate>
-          <input type="text" name="search" class="search__input" placeholder="Введите тему новости" minlength="2" maxlength="30" required>
+          <input type="text" id="search" class="search__input" placeholder="Введите тему новости" required>
           <button type="submit" name="submit" class="button search__button">Искать</button>
         </form>
       </div>
@@ -68,6 +68,15 @@
           <img src="<%=require('./images/not-found.png').default%>" alt="Ничего не найдено" class="no-results___image">
           <h2 class="no-results__title">Ничего не найдено</h2>
           <p class="text">К сожалению по вашему запросу ничего не найдено.</p>
+        </div>
+      </section>
+
+      <section class="error root__section">
+        <div class="error__container">
+          <img src="<%=require('./images/attention.png').default%>" alt="Ошибка" class="error___image">
+          <h2 class="error__title">Ошибка</h2>
+          <p class="text">Во время запроса произошла ошибка. Возможно, проблема с соединением
+            или сервер недоступен. Подождите немного и попробуйте ещё раз.</p>
         </div>
       </section>
 

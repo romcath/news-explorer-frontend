@@ -1,7 +1,7 @@
 @import url(./___image/no-results___image.css);
 @import url(./__title/no-results__title.css);
 @import url(./__container/no-results__container.css);
-@import url(./_enable/no-results_enable.css);
+@import url(./_enabled/no-results_enabled.css);
 
 .no-results {
   display: none;

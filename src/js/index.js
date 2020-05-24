@@ -10,15 +10,20 @@ import {
   MENU_UNAUTH_TEMPLATE_ID,
   MENU_CONTAINER,
   LOGO_ELEMENT,
-  ROOT_ELEMENT,
   SERVER_URL,
+  NEWS_API_PARAMS,
   POPUP_ELEMENT,
+  SEARCH_FORM,
+  ERROR_ELEMENT,
 } from './constants/constants';
 
 import MainApi from './api/MainApi';
+import NewsApi from './api/NewsApi';
 import Header from './components/Header';
 import Popup from './components/Popup';
 import FormValidator from './components/FormValidator';
+import SearchForm from './components/SearchForm';
+import {calculateDate} from './utils/calculateDate';
 
 // Обработчик состояния входа в систему
 const handleLoginState = () => {
@@ -73,6 +78,29 @@ const singinHandlerCallback = () => {
     })
 }
 
+// Обработчик submit для формы поиска
+const searchHandlerCallback = () => {
+  if (searchForm.validateElement()) {
+    const keyWord = searchForm.getValue();
+
+    event.preventDefault();
+    searchForm.renderLoading(true);
+
+    newsApi.getNews(keyWord)
+      .then(() => {
+        console.log("Все ок");
+      })
+      .catch(() => {
+        ERROR_ELEMENT.classList.add('error_enabled');
+      })
+      .finally(() => {
+        searchForm.renderLoading(false);
+      });
+
+      SEARCH_FORM.reset();
+  }
+}
+
 // Инициализация классов
 const mainApi = new MainApi({
   baseUrl: SERVER_URL,
@@ -80,7 +108,9 @@ const mainApi = new MainApi({
     'Content-Type': 'application/json',
   },
 });
+const newsApi = new NewsApi(NEWS_API_PARAMS, calculateDate);
 const validation = new FormValidator(FORM_ERRORS, singupHandlerCallback, singinHandlerCallback);
+const searchForm = new SearchForm(SEARCH_FORM, searchHandlerCallback);
 const popup = new Popup(POPUP_ELEMENT, SIGNIN_TEMPLATE_ID, SIGNUP_TEMPLATE_ID, validation);
 const header = new Header({
   MENU_AUTH_TEMPLATE_ID,
@@ -105,7 +135,3 @@ const header = new Header({
 
 // Вызов функций
 handleLoginState();
-
-
-
-
