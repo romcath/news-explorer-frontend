@@ -21,17 +21,17 @@ export default class FormValidator extends BaseComponent {
     this._setEventListeners(formElement);
   }
 
-  handleServerError(err) {
-    if (err.message === 'Failed to fetch') {
+  handleServerError(error) {
+    if (error.message === 'Failed to fetch') {
       this._setServerError('Запрос не отправлен. Проблемы с Интернетом');
     } else {
-      err.json()
+      error.json()
         .then((result) => {
           this._setServerError(result.message);
         })
         .catch((err) => {
           console.log(err);
-        })
+        });
     }
   }
 
@@ -46,13 +46,13 @@ export default class FormValidator extends BaseComponent {
         [formElement, 'input', this._validateInputElement],
         [formElement, 'input', this._toggleButtonState],
         [formElement, 'submit', this._singinHandlerCallback],
-      ])
+      ]);
     } else {
       this._setHandlers([
         [formElement, 'input', this._validateInputElement],
         [formElement, 'input', this._toggleButtonState],
         [formElement, 'submit', this._singupHandlerCallback],
-      ])
+      ]);
     }
   }
 
@@ -99,19 +99,18 @@ export default class FormValidator extends BaseComponent {
   }
 
   _getInfo() {
-   if (document.forms.signup) {
+    if (document.forms.signup) {
       const formValue = {
         email: event.currentTarget.elements.signup_email.value,
         password: event.currentTarget.elements.signup_pass.value,
         name: event.currentTarget.elements.signup_name.value,
-      }
-      return formValue;
-    } else {
-      const formValue = {
-        email: event.currentTarget.elements.signin_email.value,
-        password: event.currentTarget.elements.signin_pass.value,
-      }
+      };
       return formValue;
     }
+    const formValue = {
+      email: event.currentTarget.elements.signin_email.value,
+      password: event.currentTarget.elements.signin_pass.value,
+    };
+    return formValue;
   }
 }

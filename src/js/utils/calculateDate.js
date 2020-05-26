@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 export const calculateDate = () => {
   const days = 7;
   const date = new Date();
@@ -5,4 +6,4 @@ export const calculateDate = () => {
   const dateTo = date.toISOString();
   const dateFrom = last.toISOString();
   return { dateTo, dateFrom };
-}
+};

@@ -13,8 +13,8 @@ export default class MainApi {
         email, password, name,
       }),
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res))
-    .catch(err => Promise.reject(err));
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .catch((err) => Promise.reject(err));
   }
 
   signin(email, password) {
@@ -27,8 +27,8 @@ export default class MainApi {
         email, password,
       }),
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res))
-    .catch(err => Promise.reject(err));
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .catch((err) => Promise.reject(err));
   }
 
   logout() {
@@ -40,8 +40,8 @@ export default class MainApi {
       body: JSON.stringify({
       }),
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res))
-    .catch(err => Promise.reject(err));
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .catch((err) => Promise.reject(err));
   }
 
   getUserData() {
@@ -51,8 +51,7 @@ export default class MainApi {
       method: 'GET',
       headers: this._options.headers,
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res))
-    .catch(err => Promise.reject(err.status));
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .catch((err) => Promise.reject(err.status));
   }
 }
-

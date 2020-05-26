@@ -1,4 +1,5 @@
 /* eslint-disable no-use-before-define */
+/* eslint-disable no-restricted-globals */
 import '../styles/index.css';
 
 import {
@@ -30,24 +31,24 @@ import FormValidator from './components/FormValidator';
 import SearchForm from './components/SearchForm';
 import NewsCard from './components/NewsCard';
 import NewsCardList from './components/NewsCardList';
-import {calculateDate} from './utils/calculateDate';
-
-const loginState = !!localStorage.getItem('loginState');
+import Auth from './components/Auth';
+import { calculateDate } from './utils/calculateDate';
+import { calculateCardDate } from './utils/calculateCardDate';
 
 // Обработчик состояния входа в систему
 const handleLoginState = () => {
-  if (!!localStorage.getItem('loginState')) {
+  if (auth.getLoginState()) {
     mainApi.getUserData()
       .then((res) => {
         header.render(true, res.name);
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   } else {
     header.render(false);
   }
-}
+};
 
 // Обработчик submit для формы регистрации
 const singupHandlerCallback = () => {
@@ -55,14 +56,14 @@ const singupHandlerCallback = () => {
 
   event.preventDefault();
   mainApi.signup(email, password, name)
-  .then((res) => {
-    popup.close();
-    popup.setContent(SUCCESS_TEMPLATE_ID);
-  })
-  .catch((err) => {
-    validation.handleServerError(err);
-  })
-}
+    .then(() => {
+      popup.close();
+      popup.setContent(SUCCESS_TEMPLATE_ID);
+    })
+    .catch((err) => {
+      validation.handleServerError(err);
+    });
+};
 
 // Обработчик submit для формы входа
 const singinHandlerCallback = () => {
@@ -77,16 +78,17 @@ const singinHandlerCallback = () => {
         .then((res) => {
           popup.close();
           header.render(true, res.name);
-          newsCard.renderIconLogout(true);
+          // ////////////
+          newsCard.renderIconLogout(auth.getLoginState());
         })
         .catch((err) => {
           validation.handleServerError(err);
-        })
-      })
+        });
+    })
     .catch((err) => {
       validation.handleServerError(err);
-    })
-}
+    });
+};
 
 // Обработчик submit для формы поиска
 const searchHandlerCallback = () => {
@@ -95,7 +97,7 @@ const searchHandlerCallback = () => {
   const keyWord = searchForm.getValue();
 
   if (searchForm.validateElement()) {
-    ERROR_ELEMENT.classList.remove('error_enabled')
+    ERROR_ELEMENT.classList.remove('error_enabled');
     NO_RESULTS_ELEMENT.classList.remove('no-results_enabled');
     RESULTS_ELEMENT.classList.remove('results_enabled');
 
@@ -120,10 +122,9 @@ const searchHandlerCallback = () => {
       .finally(() => {
         newsCardList.renderLoader(false);
       });
-      SEARCH_FORM.reset();
+    SEARCH_FORM.reset();
   }
-
-}
+};
 
 // Инициализация классов
 const mainApi = new MainApi({
@@ -132,11 +133,12 @@ const mainApi = new MainApi({
     'Content-Type': 'application/json',
   },
 });
+const auth = new Auth();
 const newsApi = new NewsApi(NEWS_API_PARAMS, calculateDate);
 const validation = new FormValidator(FORM_ERRORS, singupHandlerCallback, singinHandlerCallback);
 const searchForm = new SearchForm(SEARCH_FORM, searchHandlerCallback);
 const popup = new Popup(POPUP_ELEMENT, SIGNIN_TEMPLATE_ID, SIGNUP_TEMPLATE_ID, validation);
-const newsCard = new NewsCard(CARD_TEMPLATE_ID, loginState);
+const newsCard = new NewsCard(CARD_TEMPLATE_ID, auth, calculateCardDate);
 const newsCardList = new NewsCardList(CARDS_ELEMENT, newsCard, SHOW_MORE_BUTTON);
 const header = new Header({
   MENU_AUTH_TEMPLATE_ID,
@@ -152,11 +154,11 @@ const header = new Header({
       .then(() => {
         localStorage.removeItem('loginState');
         header.render(false);
-        newsCard.renderIconLogout(false);
+        newsCard.renderIconLogout(auth.getLoginState());
       })
       .catch((err) => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   },
 });
 

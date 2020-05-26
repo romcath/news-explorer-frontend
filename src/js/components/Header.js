@@ -51,12 +51,12 @@ export default class Header extends BaseComponent {
   _setEventListeners(element) {
     if (element === this._unauthorizedElement) {
       this._setHandlers([
-        [this._buttonElement, 'click', this._openHandlerCallback]
-      ])
+        [this._buttonElement, 'click', this._openHandlerCallback],
+      ]);
     } else {
       this._setHandlers([
-        [this._iconElement, 'click', this._logoutHandlerCallback]
-      ])
+        [this._iconElement, 'click', this._logoutHandlerCallback],
+      ]);
     }
   }
 }

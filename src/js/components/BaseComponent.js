@@ -5,8 +5,8 @@ export default class BaseComponent {
 
   _setHandlers(handlers) {
     handlers.forEach((handler) => {
-      this._addHandler(...handler)
-    })
+      this._addHandler(...handler);
+    });
   }
 
   _addHandler(element, event, handler) {

@@ -1,3 +1,5 @@
+const MONTHS = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
 const FORM_ERRORS = {
   validationLength: 'Должно быть не меньше 8 символов',
   validationMissing: 'Это обязательное поле',
@@ -30,9 +32,10 @@ const NEWS_API_PARAMS = {
   sortBy: 'popularity',
   apiKey: 'a1048954ae8c497ba3eb9fb43d74f300',
   pageSize: 100,
-}
+};
 
 export {
+  MONTHS,
   FORM_ERRORS,
   SIGNUP_TEMPLATE_ID,
   SIGNIN_TEMPLATE_ID,

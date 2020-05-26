@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import BaseComponent from './BaseComponent';
 
 export default class Popup extends BaseComponent {
@@ -67,6 +68,6 @@ export default class Popup extends BaseComponent {
       [document, 'keyup', this._handleEscClose],
       [this._closeButton, 'click', this._close],
       [this._link, 'click', this._openPopupCallback],
-    ])
+    ]);
   }
 }

@@ -12,7 +12,7 @@ export default class NewsApi {
     return fetch(`${baseUrl}q=${request}&from=${dateFrom}&to=${dateTo}&sortBy=${sortBy}&pageSize=${pageSize}&apiKey=${apiKey}`, {
       method: 'GET',
     })
-    .then(res => res.ok ? res.json() : Promise.reject())
-    .catch(err => Promise.reject(err.message));
+      .then((res) => (res.ok ? res.json() : Promise.reject()))
+      .catch((err) => Promise.reject(err.message));
   }
 }

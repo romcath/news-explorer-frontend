@@ -14,7 +14,7 @@ export default class SearchForm extends FormValidator {
   _setEventListeners() {
     this._setHandlers([
       [this._formElement, 'submit', this._searchHandlerCallback],
-    ])
+    ]);
   }
 
   validateElement() {
@@ -23,10 +23,9 @@ export default class SearchForm extends FormValidator {
     if (inputElement.validity.valueMissing) {
       inputElement.placeholder = 'Нужно ввести ключевое слово';
       return false;
-    } else {
-      inputElement.placeholder = 'Введите тему новости';
-      return true;
     }
+    inputElement.placeholder = 'Введите тему новости';
+    return true;
   }
 
   getValue() {

@@ -15,22 +15,22 @@ export default class NewsCardList extends BaseComponent {
   renderResults(cards, request) {
     const keyWord = { keyWord: request };
 
-    this._foundedCards = cards.map((item) => ({...item, ...keyWord}))
+    this._foundedCards = cards.map((item) => ({ ...item, ...keyWord }));
     return this.foundedCards;
   }
 
   appendCards() {
     this._item = this._foundedCards.splice(0, 3);
-    this._item.forEach((item) =>  {
+    this._item.forEach((item) => {
       this._card.create(item);
       this._container.appendChild(this._card.element);
-    })
+    });
   }
 
   setEventListener() {
     this._setHandlers([
       [this._buttonElement, 'click', this._showMore],
-    ])
+    ]);
   }
 
   renderLoader(isLoading) {
@@ -45,11 +45,11 @@ export default class NewsCardList extends BaseComponent {
 
   clearContent() {
     const res = Array.from(this._container.querySelectorAll('.card'));
-    
+
     if (res.length !== 0) {
       res.forEach((item) => {
         item.remove();
-      })
+      });
     }
   }
 

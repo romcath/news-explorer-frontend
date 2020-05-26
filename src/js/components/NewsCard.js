@@ -1,10 +1,11 @@
 import BaseComponent from './BaseComponent';
 
 export default class NewsCard extends BaseComponent {
-  constructor(selector, isLoggedIn) {
+  constructor(selector, auth, calculateCardDate) {
     super();
     this._selector = selector;
-    this._isLoggedIn = isLoggedIn;
+    this._auth = auth;
+    this._calculateCardDate = calculateCardDate;
   }
 
   create(cardData) {
@@ -14,7 +15,8 @@ export default class NewsCard extends BaseComponent {
     this._checkUrlToImage(cardData);
 
     this.element.querySelector('.card__link').setAttribute('href', cardData.url);
-    this.element.querySelector('.card__date').textContent = cardData.publishedAt;
+    this._date = this._calculateCardDate(cardData.publishedAt);
+    this.element.querySelector('.card__date').textContent = this._date;
     this.element.querySelector('.card__title').textContent = cardData.title;
     this.element.querySelector('.card__text').textContent = cardData.description;
     this.element.querySelector('.card__source').textContent = cardData.source.name;
@@ -37,7 +39,7 @@ export default class NewsCard extends BaseComponent {
     this._cardIcon = this.element.querySelector('.card__icon');
     this._cardNotification = this.element.querySelector('.card__notification');
 
-    if(this._isLoggedIn){
+    if (this._auth.getLoginState()) {
       this._cardIcon.classList.add('card__icon_save');
     } else {
       this._cardIcon.classList.add('card__icon_save');
@@ -55,14 +57,14 @@ export default class NewsCard extends BaseComponent {
           item.querySelector('.card__icon').classList.add('card__icon_save');
           item.querySelector('.card__icon').classList.remove('card__icon_no-signup');
           item.querySelector('.card__notification').textContent = '';
-          })
-        } else {
-          cardSaveContainer.forEach((item) => {
-            item.querySelector('.card__icon').classList.add('card__icon_save');
-            item.querySelector('.card__icon').classList.add('card__icon_no-signup');
-            item.querySelector('.card__notification').textContent = 'Войдите, чтобы сохранять статьи';
-            })
-          }
-        }
+        });
+      } else {
+        cardSaveContainer.forEach((item) => {
+          item.querySelector('.card__icon').classList.add('card__icon_save');
+          item.querySelector('.card__icon').classList.add('card__icon_no-signup');
+          item.querySelector('.card__notification').textContent = 'Войдите, чтобы сохранять статьи';
+        });
+      }
+    }
   }
 }
