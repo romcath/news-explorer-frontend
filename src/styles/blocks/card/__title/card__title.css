@@ -21,7 +21,31 @@
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
+  .card__title {
+    -webkit-line-clamp: 2;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card__title {
+    -webkit-line-clamp: 3;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card__title {
+    -webkit-line-clamp: 2;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .card__title {
+    -webkit-line-clamp: 3;
+  }
+}
+
+@media screen and (max-width: 325px) {
   .card__title {
     -webkit-line-clamp: 2;
   }

@@ -8,6 +8,7 @@ import {
   SUCCESS_TEMPLATE_ID,
   MENU_AUTH_TEMPLATE_ID,
   MENU_UNAUTH_TEMPLATE_ID,
+  CARD_TEMPLATE_ID,
   MENU_CONTAINER,
   LOGO_ELEMENT,
   SERVER_URL,
@@ -15,6 +16,10 @@ import {
   POPUP_ELEMENT,
   SEARCH_FORM,
   ERROR_ELEMENT,
+  CARDS_ELEMENT,
+  RESULTS_ELEMENT,
+  NO_RESULTS_ELEMENT,
+  SHOW_MORE_BUTTON,
 } from './constants/constants';
 
 import MainApi from './api/MainApi';
@@ -23,7 +28,11 @@ import Header from './components/Header';
 import Popup from './components/Popup';
 import FormValidator from './components/FormValidator';
 import SearchForm from './components/SearchForm';
+import NewsCard from './components/NewsCard';
+import NewsCardList from './components/NewsCardList';
 import {calculateDate} from './utils/calculateDate';
+
+const loginState = !!localStorage.getItem('loginState');
 
 // Обработчик состояния входа в систему
 const handleLoginState = () => {
@@ -68,6 +77,7 @@ const singinHandlerCallback = () => {
         .then((res) => {
           popup.close();
           header.render(true, res.name);
+          newsCard.renderIconLogout(true);
         })
         .catch((err) => {
           validation.handleServerError(err);
@@ -80,25 +90,39 @@ const singinHandlerCallback = () => {
 
 // Обработчик submit для формы поиска
 const searchHandlerCallback = () => {
-  if (searchForm.validateElement()) {
-    const keyWord = searchForm.getValue();
+  event.preventDefault();
 
-    event.preventDefault();
-    searchForm.renderLoading(true);
+  const keyWord = searchForm.getValue();
+
+  if (searchForm.validateElement()) {
+    ERROR_ELEMENT.classList.remove('error_enabled')
+    NO_RESULTS_ELEMENT.classList.remove('no-results_enabled');
+    RESULTS_ELEMENT.classList.remove('results_enabled');
+
+    newsCardList.clearContent();
+    newsCardList.renderLoader(true);
 
     newsApi.getNews(keyWord)
-      .then(() => {
-        console.log("Все ок");
+      .then((result) => {
+        if (result.articles.length !== 0) {
+          RESULTS_ELEMENT.classList.add('results_enabled');
+
+          newsCardList.setEventListener();
+          newsCardList.renderResults(result.articles, keyWord);
+          newsCardList.appendCards();
+        } else {
+          NO_RESULTS_ELEMENT.classList.add('no-results_enabled');
+        }
       })
       .catch(() => {
         ERROR_ELEMENT.classList.add('error_enabled');
       })
       .finally(() => {
-        searchForm.renderLoading(false);
+        newsCardList.renderLoader(false);
       });
-
       SEARCH_FORM.reset();
   }
+
 }
 
 // Инициализация классов
@@ -112,6 +136,8 @@ const newsApi = new NewsApi(NEWS_API_PARAMS, calculateDate);
 const validation = new FormValidator(FORM_ERRORS, singupHandlerCallback, singinHandlerCallback);
 const searchForm = new SearchForm(SEARCH_FORM, searchHandlerCallback);
 const popup = new Popup(POPUP_ELEMENT, SIGNIN_TEMPLATE_ID, SIGNUP_TEMPLATE_ID, validation);
+const newsCard = new NewsCard(CARD_TEMPLATE_ID, loginState);
+const newsCardList = new NewsCardList(CARDS_ELEMENT, newsCard, SHOW_MORE_BUTTON);
 const header = new Header({
   MENU_AUTH_TEMPLATE_ID,
   MENU_UNAUTH_TEMPLATE_ID,
@@ -126,6 +152,7 @@ const header = new Header({
       .then(() => {
         localStorage.removeItem('loginState');
         header.render(false);
+        newsCard.renderIconLogout(false);
       })
       .catch((err) => {
         console.log(err)

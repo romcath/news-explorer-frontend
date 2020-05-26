@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
 import FormValidator from './FormValidator';
 
 export default class SearchForm extends FormValidator {
@@ -33,15 +31,5 @@ export default class SearchForm extends FormValidator {
 
   getValue() {
     return this._formElement.search.value;
-  }
-
-  renderLoading(isLoading) {
-    const spinner = document.querySelector('.preloader');
-
-    if (isLoading) {
-      spinner.classList.add('preloader_enabled');
-    } else {
-      spinner.classList.remove('preloader_enabled');
-    }
   }
 }

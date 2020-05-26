@@ -10,12 +10,17 @@ const SIGNIN_TEMPLATE_ID = '#signin-popup-template';
 const SUCCESS_TEMPLATE_ID = '#success-popup-template';
 const MENU_AUTH_TEMPLATE_ID = '#menu-authorized-template';
 const MENU_UNAUTH_TEMPLATE_ID = '#menu-unauthorized-template';
+const CARD_TEMPLATE_ID = '#card-template';
 
 const MENU_CONTAINER = document.querySelector('.overlay');
 const LOGO_ELEMENT = document.querySelector('.logo');
 const ROOT_ELEMENT = document.querySelector('.root');
 const POPUP_ELEMENT = document.querySelector('.popup');
 const ERROR_ELEMENT = document.querySelector('.error');
+const CARDS_ELEMENT = document.querySelector('.cards');
+const RESULTS_ELEMENT = document.querySelector('.results');
+const NO_RESULTS_ELEMENT = document.querySelector('.no-results');
+const SHOW_MORE_BUTTON = document.querySelector('.card__show-button');
 const SEARCH_FORM = document.forms.explorer;
 
 // const SERVER_URL = 'http://api.news-app.cf';
@@ -34,6 +39,7 @@ export {
   SUCCESS_TEMPLATE_ID,
   MENU_AUTH_TEMPLATE_ID,
   MENU_UNAUTH_TEMPLATE_ID,
+  CARD_TEMPLATE_ID,
   MENU_CONTAINER,
   LOGO_ELEMENT,
   ROOT_ELEMENT,
@@ -42,4 +48,8 @@ export {
   NEWS_API_PARAMS,
   SEARCH_FORM,
   ERROR_ELEMENT,
+  CARDS_ELEMENT,
+  RESULTS_ELEMENT,
+  NO_RESULTS_ELEMENT,
+  SHOW_MORE_BUTTON,
 };

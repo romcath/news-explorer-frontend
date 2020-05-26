@@ -4,15 +4,38 @@
   height: 218px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 990px) {
   .card__content {
     padding: 16px 16px 0;
     margin-bottom: 12px;
+    height: 200px;
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
+  .card__content {
+    padding: 16px 16px 0;
+    margin-bottom: 12px;
+    height: 140px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card__content {
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 760px) {
   .card__content {
     margin-bottom: 8px;
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .card__content {
+    margin-bottom: 8px;
+    height: 180px;
   }
 }

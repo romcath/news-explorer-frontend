@@ -89,12 +89,13 @@
         <div class="results__content">
           <h2 class="title">Результаты поиска</h2>
           <div class="cards root__cards">
+            <template id="card-template">
             <article class="card">
-              <a href="#" class="card__link">
+              <a href="#" target="_blank" class="card__link">
                 <img class="card__image" src="<%=require('./images/card_1.jpg').default%>" alt="Фото статьи">
                 <div class="card__save-container">
-                  <i class="card__icon card__icon_save card__icon_no-signup"></i>
-                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
+                  <i class="card__icon"></i>
+                  <span class="card__notification"></span>
                 </div>
                 <div class="card__content">
                   <p class="card__date">2 августа, 2019</p>
@@ -106,41 +107,7 @@
                 <p class="card__source">Лента.ру</p>
               </a>
             </article>
-
-            <article class="card">
-              <a href="#" class="card__link">
-                <img class="card__image" src="<%=require('./images/card_2.jpg').default%>" alt="Фото статьи">
-                <div class="card__save-container">
-                  <i class="card__icon card__icon_save"></i>
-                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
-                </div>
-                <div class="card__content">
-                  <p class="card__date">2 августа, 2019</p>
-                  <h3 class="card__title">Лесные огоньки: история одной фотографии</h3>
-                  <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
-                    из местных чудес природы.</p>
-                </div>
-                <p class="card__source">Медуза</p>
-              </a>
-            </article>
-
-            <article class="card">
-              <a href="#" class="card__link">
-                <img class="card__image" src="<%=require('./images/card_3.jpg').default%>" alt="Фото статьи">
-                <div class="card__save-container">
-                  <i class="card__icon card__icon_marked"></i>
-                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
-                </div>
-                <div class="card__content">
-                  <p class="card__date">2 августа, 2019</p>
-                  <h3 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h3>
-                  <p class="card__text">Знаменитый фотограф снимает первозданные леса России, чтобы рассказать
-                    о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
-                  </div>
-                <p class="card__source">Риа</p>
-              </a>
-            </article>
-
+            </template>
           </div>
           <button class="button card__show-button">Показать ещё</button>
         </div>
