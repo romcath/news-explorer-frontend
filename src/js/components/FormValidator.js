@@ -3,15 +3,15 @@
 import BaseComponent from './BaseComponent';
 
 export default class FormValidator extends BaseComponent {
-  constructor(words, singupHandlerCallback, singinHandlerCallback) {
+  constructor(words, singupHandler, singinHandler) {
     super();
     this._words = words;
 
-    this._singupHandlerCallback = singupHandlerCallback || (() => {});
-    this._singupHandlerCallback = this._singupHandlerCallback.bind(this);
+    this._singupHandler = singupHandler || (() => {});
+    this._singupHandler = this._singupHandler.bind(this);
 
-    this._singinHandlerCallback = singinHandlerCallback || (() => {});
-    this._singinHandlerCallback = this._singinHandlerCallback.bind(this);
+    this._singinHandler = singinHandler || (() => {});
+    this._singinHandler = this._singinHandler.bind(this);
 
     this._validateInputElement = this._validateInputElement.bind(this);
     this._toggleButtonState = this._toggleButtonState.bind(this);
@@ -45,13 +45,13 @@ export default class FormValidator extends BaseComponent {
       this._setHandlers([
         [formElement, 'input', this._validateInputElement],
         [formElement, 'input', this._toggleButtonState],
-        [formElement, 'submit', this._singinHandlerCallback],
+        [formElement, 'submit', this._singinHandler],
       ]);
     } else {
       this._setHandlers([
         [formElement, 'input', this._validateInputElement],
         [formElement, 'input', this._toggleButtonState],
-        [formElement, 'submit', this._singupHandlerCallback],
+        [formElement, 'submit', this._singupHandler],
       ]);
     }
   }

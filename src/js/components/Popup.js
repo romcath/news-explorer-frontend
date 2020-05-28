@@ -12,7 +12,7 @@ export default class Popup extends BaseComponent {
     this._closeButton = this._popupElement.querySelector('.popup__close');
 
     this._handleEscClose = this._handleEscClose.bind(this);
-    this._openPopupCallback = this._openPopupCallback.bind(this);
+    this._openPopup = this._openPopup.bind(this);
     this._close = this.close.bind(this);
   }
 
@@ -31,7 +31,7 @@ export default class Popup extends BaseComponent {
 
   clearContent() {
     this._popupElement.querySelector('.popup__template-container').remove();
-    this._clearHandlers(this._link, 'click', this._openPopupCallback);
+    this._clearHandlers(this._link, 'click', this._openPopup);
   }
 
   open() {
@@ -53,7 +53,7 @@ export default class Popup extends BaseComponent {
     }
   }
 
-  _openPopupCallback() {
+  _openPopup() {
     this.clearContent();
 
     if (event.target.classList.contains('popup__link_signin')) {
@@ -67,7 +67,7 @@ export default class Popup extends BaseComponent {
     this._setHandlers([
       [document, 'keyup', this._handleEscClose],
       [this._closeButton, 'click', this._close],
-      [this._link, 'click', this._openPopupCallback],
+      [this._link, 'click', this._openPopup],
     ]);
   }
 }

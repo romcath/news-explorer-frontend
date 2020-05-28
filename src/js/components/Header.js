@@ -14,8 +14,8 @@ export default class Header extends BaseComponent {
     this._unauthorizedTemplate = document.querySelector(this._props.MENU_UNAUTH_TEMPLATE_ID).content.querySelector('.menu');
     this._unauthorizedElement = this._unauthorizedTemplate.cloneNode(true);
 
-    this._openHandlerCallback = this._props.openHandlerCallback.bind(this);
-    this._logoutHandlerCallback = this._props.logoutHandlerCallback.bind(this);
+    this._openPopupHandler = this._props.openPopupHandler.bind(this);
+    this._logoutHandler = this._props.logoutHandler.bind(this);
   }
 
   render(isLoggedIn, userName) {
@@ -51,11 +51,11 @@ export default class Header extends BaseComponent {
   _setEventListeners(element) {
     if (element === this._unauthorizedElement) {
       this._setHandlers([
-        [this._buttonElement, 'click', this._openHandlerCallback],
+        [this._buttonElement, 'click', this._openPopupHandler],
       ]);
     } else {
       this._setHandlers([
-        [this._iconElement, 'click', this._logoutHandlerCallback],
+        [this._iconElement, 'click', this._logoutHandler],
       ]);
     }
   }

@@ -1,19 +1,19 @@
 import FormValidator from './FormValidator';
 
 export default class SearchForm extends FormValidator {
-  constructor(formElement, searchHandlerCallback) {
+  constructor(formElement, searchHandler) {
     super();
     this._formElement = formElement;
 
-    this._searchHandlerCallback = searchHandlerCallback || (() => {});
-    this._searchHandlerCallback = this._searchHandlerCallback.bind(this);
+    this._searchHandler = searchHandler || (() => {});
+    this._searchHandler = this._searchHandler.bind(this);
 
     this._setEventListeners();
   }
 
   _setEventListeners() {
     this._setHandlers([
-      [this._formElement, 'submit', this._searchHandlerCallback],
+      [this._formElement, 'submit', this._searchHandler],
     ]);
   }
 

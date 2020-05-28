@@ -1,6 +1,6 @@
 export default class BaseComponent {
-  constructor(handlers = []) {
-    this._handlers = handlers;
+  constructor() {
+    this._handlers = [];
   }
 
   _setHandlers(handlers) {

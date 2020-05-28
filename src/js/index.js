@@ -34,6 +34,7 @@ import NewsCardList from './components/NewsCardList';
 import Auth from './components/Auth';
 import { calculateDate } from './utils/calculateDate';
 import { calculateCardDate } from './utils/calculateCardDate';
+import { capitalizeFirstLetter } from './utils/capitalizeFirstLetter';
 
 // Обработчик состояния входа в систему
 const handleLoginState = () => {
@@ -51,7 +52,7 @@ const handleLoginState = () => {
 };
 
 // Обработчик submit для формы регистрации
-const singupHandlerCallback = () => {
+const singupHandler = () => {
   const { email, password, name } = validation._getInfo();
 
   event.preventDefault();
@@ -66,7 +67,7 @@ const singupHandlerCallback = () => {
 };
 
 // Обработчик submit для формы входа
-const singinHandlerCallback = () => {
+const singinHandler = () => {
   const { email, password } = validation._getInfo();
 
   event.preventDefault();
@@ -78,8 +79,9 @@ const singinHandlerCallback = () => {
         .then((res) => {
           popup.close();
           header.render(true, res.name);
-          // ////////////
-          newsCard.renderIconLogout(auth.getLoginState());
+          newsCardList.clearContent();
+          const array = newsCardList.getRenderedCards();
+          newsCardList.appendCardsLogin(array);
         })
         .catch((err) => {
           validation.handleServerError(err);
@@ -91,7 +93,7 @@ const singinHandlerCallback = () => {
 };
 
 // Обработчик submit для формы поиска
-const searchHandlerCallback = () => {
+const searchHandler = () => {
   event.preventDefault();
 
   const keyWord = searchForm.getValue();
@@ -102,6 +104,7 @@ const searchHandlerCallback = () => {
     RESULTS_ELEMENT.classList.remove('results_enabled');
 
     newsCardList.clearContent();
+    newsCardList.clearArrayRenderedCards();
     newsCardList.renderLoader(true);
 
     newsApi.getNews(keyWord)
@@ -126,6 +129,45 @@ const searchHandlerCallback = () => {
   }
 };
 
+// Обработчик сохранения статей
+const saveButtonHandler = (cardData) => function saveButton() {
+  const { title, description, urlToImage, publishedAt, source, url, keyword } = cardData;
+  const cardFields = {
+    keyword: capitalizeFirstLetter(keyword),
+    title,
+    text: description,
+    date: calculateCardDate(publishedAt),
+    source: source.name,
+    link: url,
+    image: urlToImage,
+  };
+  const iconElement = event.target;
+
+  mainApi.createArticle(cardFields)
+    .then((res) => {
+      const articleId = res._id;
+      iconElement.removeEventListener('click', saveButton);
+      newsCard.addMarkedIcon(iconElement, cardData, articleId, true);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// Обработчик удаления статьи
+const removeButtonHandler = (articleId, cardData) => function removeButton() {
+  const iconElement = event.target;
+
+  mainApi.removeArticle(articleId)
+    .then(() => {
+      iconElement.removeEventListener('click', removeButton);
+      newsCard.addMarkedIcon(iconElement, cardData, articleId, false);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 // Инициализация классов
 const mainApi = new MainApi({
   baseUrl: SERVER_URL,
@@ -135,10 +177,10 @@ const mainApi = new MainApi({
 });
 const auth = new Auth();
 const newsApi = new NewsApi(NEWS_API_PARAMS, calculateDate);
-const validation = new FormValidator(FORM_ERRORS, singupHandlerCallback, singinHandlerCallback);
-const searchForm = new SearchForm(SEARCH_FORM, searchHandlerCallback);
+const validation = new FormValidator(FORM_ERRORS, singupHandler, singinHandler);
+const searchForm = new SearchForm(SEARCH_FORM, searchHandler);
 const popup = new Popup(POPUP_ELEMENT, SIGNIN_TEMPLATE_ID, SIGNUP_TEMPLATE_ID, validation);
-const newsCard = new NewsCard(CARD_TEMPLATE_ID, auth, calculateCardDate);
+const newsCard = new NewsCard(CARD_TEMPLATE_ID, auth, calculateCardDate, saveButtonHandler, removeButtonHandler);
 const newsCardList = new NewsCardList(CARDS_ELEMENT, newsCard, SHOW_MORE_BUTTON);
 const header = new Header({
   MENU_AUTH_TEMPLATE_ID,
@@ -146,15 +188,17 @@ const header = new Header({
   MENU_CONTAINER,
   LOGO_ELEMENT,
   theme: 'white',
-  openHandlerCallback: () => {
+  openPopupHandler: () => {
     popup.setContent(SIGNIN_TEMPLATE_ID);
   },
-  logoutHandlerCallback: () => {
+  logoutHandler: () => {
     mainApi.logout()
       .then(() => {
         localStorage.removeItem('loginState');
         header.render(false);
-        newsCard.renderIconLogout(auth.getLoginState());
+        newsCardList.clearContent();
+        const array = newsCardList.getRenderedCards();
+        newsCardList.appendCardsLogin(array);
       })
       .catch((err) => {
         console.log(err);

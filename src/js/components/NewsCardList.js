@@ -8,12 +8,13 @@ export default class NewsCardList extends BaseComponent {
     this._buttonElement = buttonElement;
     this._foundedCards = [];
     this._item = [];
+    this.renderedCards = [];
 
     this._showMore = this._showMore.bind(this);
   }
 
   renderResults(cards, request) {
-    const keyWord = { keyWord: request };
+    const keyWord = { keyword: request };
 
     this._foundedCards = cards.map((item) => ({ ...item, ...keyWord }));
     return this.foundedCards;
@@ -25,9 +26,27 @@ export default class NewsCardList extends BaseComponent {
       this._card.create(item);
       this._container.appendChild(this._card.element);
     });
+    this.renderedCards = this.renderedCards.concat(this._item);
+  }
+
+  appendCardsLogin(cards) {
+    cards.forEach((item) => {
+      this._card.create(item);
+      this._container.appendChild(this._card.element);
+    });
+  }
+
+  getRenderedCards() {
+    return this.renderedCards;
+  }
+
+  clearArrayRenderedCards() {
+    this.renderedCards = [];
   }
 
   setEventListener() {
+    this._buttonElement.classList.remove('button_disabled');
+
     this._setHandlers([
       [this._buttonElement, 'click', this._showMore],
     ]);
@@ -45,7 +64,6 @@ export default class NewsCardList extends BaseComponent {
 
   clearContent() {
     const res = Array.from(this._container.querySelectorAll('.card'));
-
     if (res.length !== 0) {
       res.forEach((item) => {
         item.remove();
