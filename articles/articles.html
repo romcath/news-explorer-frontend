@@ -7,7 +7,7 @@
   <meta name="description" content="Сервис для поиска новостей">
   <meta name="author" content="Катя Ромашкина">
   <link rel="icon" href=".././images/favicon.004c6aba11e61c2a783548a43f5f1e1f.png">
-  <link rel="stylesheet" href="../articles/articles.c675ae261a75fc2bc67b.css">
+  <link rel="stylesheet" href="../articles/articles.e45caaf9aa81d8bc66f6.css">
   <title>Сервис для поиска новостей</title>
 </head>
 <body>
@@ -18,22 +18,24 @@
           <a href="../index.html" class="logo logo_dark">NewsExplorer</a>
           <img src=".././images/menu-dark.9a840ff4e6550bd1e0fae70d88a90fe6.png" alt="Меню" class="header__menu-icon">
           <div class="overlay">
-            <nav class="menu">
-              <ul class="menu__list">
-                <li class="menu__item">
-                  <a href="../index.html" class="menu__link menu__link_dark">Главная</a>
-                </li>
-              </ul>
-              <ul class="menu__list">
-                <li class="menu__item">
-                  <a href="#" class="menu__link menu__link_dark menu__link_active-dark">Сохранённые статьи</a>
-                </li>
-              </ul>
-              <button type="submit" name="submit" class="button button_dark button_logout button_mobile">
-                <span>Грета</span>
-                <i class="icon icon_logout_dark"></i>
-              </button>
-            </nav>
+            <template id="menu-authorized-template">
+              <nav class="menu">
+                <ul class="menu__list">
+                  <li class="menu__item">
+                    <a href="../index.html" class="menu__link">Главная</a>
+                  </li>
+                </ul>
+                <ul class="menu__list">
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">Сохранённые статьи</a>
+                  </li>
+                </ul>
+                <button type="submit" name="submit" class="button button_logout button_mobile">
+                  <span class="button__name"></span>
+                  <i class="icon"></i>
+                </button>
+              </nav>
+            </template>
           </div>
         </div>
       </header>
@@ -170,5 +172,6 @@
 
     </div>
   </div>
+  <script type="module" src="../articles/articles.c6c245fa77d4b90f3d81.js"></script>
 </body>
 </html>

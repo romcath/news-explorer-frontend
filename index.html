@@ -7,7 +7,7 @@
   <meta name="description" content="Сервис для поиска новостей">
   <meta name="author" content="Катя Ромашкина">
   <link rel="icon" href="./images/favicon.004c6aba11e61c2a783548a43f5f1e1f.png">
-  <link rel="stylesheet" href="main/main.0d5ec24ed1e8cc8f42bb.css">
+  <link rel="stylesheet" href="main/main.8027d7d8e4ca0b3b0c46.css">
   <title>Сервис для поиска новостей</title>
 </head>
 <body>
@@ -44,7 +44,7 @@
                   </li>
                 </ul>
                 <button type="submit" name="submit" class="button button_logout button_mobile">
-                  <span class="button__name">Грета</span>
+                  <span class="button__name"></span>
                   <i class="icon"></i>
                 </button>
               </nav>
@@ -56,7 +56,7 @@
         <h1 class="search__title">Что в мире творится?</h1>
         <p class="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
         <form class="search__form" name="explorer" novalidate>
-          <input type="text" name="search" class="search__input" placeholder="Введите тему новости" minlength="2" maxlength="30" required>
+          <input type="text" id="search" class="search__input" placeholder="Введите тему новости" required>
           <button type="submit" name="submit" class="button search__button">Искать</button>
         </form>
       </div>
@@ -71,6 +71,15 @@
         </div>
       </section>
 
+      <section class="error root__section">
+        <div class="error__container">
+          <img src="./images/attention.4d26cbd20b06c6bd205d6ce8173cec86.png" alt="Ошибка" class="error___image">
+          <h2 class="error__title">Ошибка</h2>
+          <p class="text">Во время запроса произошла ошибка. Возможно, проблема с соединением
+            или сервер недоступен. Подождите немного и попробуйте ещё раз.</p>
+        </div>
+      </section>
+
       <section class="preloader root__section">
         <i class="preloader__circle"></i>
         <h2 class="text">Идет поиск новостей...</h2>
@@ -80,58 +89,22 @@
         <div class="results__content">
           <h2 class="title">Результаты поиска</h2>
           <div class="cards root__cards">
-            <article class="card">
-              <a href="#" class="card__link">
-                <img class="card__image" src="./images/card_1.1c15e881481ef3f9a32ba0bedd251665.jpg" alt="Фото статьи">
+            <template id="card-template">
+              <article class="card">
                 <div class="card__save-container">
-                  <i class="card__icon card__icon_save card__icon_no-signup"></i>
-                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
+                  <i class="card__icon"></i>
+                  <span class="card__notification"></span>
                 </div>
-                <div class="card__content">
-                  <p class="card__date">2 августа, 2019</p>
-                  <h3 class="card__title">Национальное достояние — парки</h3>
-                  <p class="card__text">В 2016 году Америка отмечала важный юбилей:
-                    сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
-                    где и сегодня каждый может приобщиться к природе.</p>
-                </div>
-                <p class="card__source">Лента.ру</p>
-              </a>
-            </article>
-
-            <article class="card">
-              <a href="#" class="card__link">
-                <img class="card__image" src="./images/card_2.fce24681ab1e60472799c6f34d01a7c4.jpg" alt="Фото статьи">
-                <div class="card__save-container">
-                  <i class="card__icon card__icon_save"></i>
-                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
-                </div>
-                <div class="card__content">
-                  <p class="card__date">2 августа, 2019</p>
-                  <h3 class="card__title">Лесные огоньки: история одной фотографии</h3>
-                  <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
-                    из местных чудес природы.</p>
-                </div>
-                <p class="card__source">Медуза</p>
-              </a>
-            </article>
-
-            <article class="card">
-              <a href="#" class="card__link">
-                <img class="card__image" src="./images/card_3.48567a3f0a2e74ccfe094c4cdbb2fbfe.jpg" alt="Фото статьи">
-                <div class="card__save-container">
-                  <i class="card__icon card__icon_marked"></i>
-                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
-                </div>
-                <div class="card__content">
-                  <p class="card__date">2 августа, 2019</p>
-                  <h3 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h3>
-                  <p class="card__text">Знаменитый фотограф снимает первозданные леса России, чтобы рассказать
-                    о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
-                  </div>
-                <p class="card__source">Риа</p>
-              </a>
-            </article>
-
+                <a href="#" target="_blank" class="card__link">
+                  <img class="card__image" src="" alt="Фото статьи">
+                  <div class="card__content">
+                    <p class="card__date"></p>
+                    <h3 class="card__title"></h3>
+                    <p class="card__text"></div>
+                  <p class="card__source"></p>
+                </a>
+              </article>
+            </template>
           </div>
           <button class="button card__show-button">Показать ещё</button>
         </div>
@@ -241,6 +214,6 @@
     </div>
 
   </div>
-  <script type="module" src="main/main.0f205d68f48fc76b4b3a.js"></script>
+  <script type="module" src="main/main.c6c245fa77d4b90f3d81.js"></script>
 </body>
 </html>
