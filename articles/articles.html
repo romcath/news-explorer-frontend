@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="html, css, news, exploper">
   <meta name="description" content="Сервис для поиска новостей">
@@ -15,7 +16,7 @@
     <div class="root">
       <header class="header">
         <div class="header__container">
-          <a href="../index.html" class="logo logo_dark">NewsExplorer</a>
+          <a href="../index.html" class="logo">NewsExplorer</a>
           <img src=".././images/menu-dark.9a840ff4e6550bd1e0fae70d88a90fe6.png" alt="Меню" class="header__menu-icon">
           <div class="overlay">
             <template id="menu-authorized-template">
@@ -44,11 +45,9 @@
         <section class="articles root__articles">
           <div class="articles__container">
             <p class="articles__text">Сохранённые статьи</p>
-            <h1 class="title">Грета, у вас 5 сохранённых статей</h1>
+            <h1 class="title"></h1>
             <p class="articles__paragraph">По ключевым словам:
-              <span class="articles__span">Природа</span>,
-              <span class="articles__span">Тайга</span> и
-              <span class="articles__span">2 другим</span>
+              <span class="articles__span"></span>
             </p>
           </div>
         </section>
@@ -56,97 +55,24 @@
         <section class="save-articles">
           <div class="save-articles__container">
             <div class="cards root__cards">
-              <article class="card">
-                <a href="#" class="card__link">
-                  <img class="card__image" src=".././images/card_1.1c15e881481ef3f9a32ba0bedd251665.jpg" alt="Фото статьи">
-                  <p class="card__tag">Природа</p>
+              <template id="card-template">
+                <article class="card">
                   <div class="card__save-container">
-                    <i class="card__icon card__icon_del"></i>
-                    <span class="card__notification card__notification_medium">Убрать их сохранённых</span>
+                    <i class="card__icon"></i>
+                    <span class="card__notification card__notification_medium"></span>
                   </div>
-                  <div class="card__content">
-                    <p class="card__date">2 августа, 2019</p>
-                    <h3 class="card__title">Национальное достояние — парки</h3>
-                    <p class="card__text">В 2016 году Америка отмечала важный юбилей:
-                      сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
-                      где и сегодня каждый может приобщиться к природе.</p>
-                  </div>
-                  <p class="card__source">Лента.ру</p>
-                </a>
-              </article>
-
-              <article class="card">
-                <a href="#" class="card__link">
-                  <img class="card__image" src=".././images/card_2.fce24681ab1e60472799c6f34d01a7c4.jpg" alt="Фото статьи">
-                  <p class="card__tag">Природа</p>
-                  <div class="card__save-container">
-                    <i class="card__icon card__icon_del"></i>
-                    <span class="card__notification card__notification_medium">Убрать их сохранённых</span>
-                  </div>
-                  <div class="card__content">
-                    <p class="card__date">2 августа, 2019</p>
-                    <h3 class="card__title">Лесные огоньки: история одной фотографии</h3>
-                    <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
-                      из местных чудес природы.</p>
-                  </div>
-                  <p class="card__source">Медуза</p>
-                </a>
-              </article>
-
-              <article class="card">
-                <a href="#" class="card__link">
-                  <img class="card__image" src=".././images/card_3.48567a3f0a2e74ccfe094c4cdbb2fbfe.jpg" alt="Фото статьи">
-                  <p class="card__tag">Тайга</p>
-                  <div class="card__save-container">
-                    <i class="card__icon card__icon_del"></i>
-                    <span class="card__notification card__notification_medium">Убрать их сохранённых</span>
-                  </div>
-                  <div class="card__content">
-                    <p class="card__date">2 августа, 2019</p>
-                    <h3 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h3>
-                    <p class="card__text">Знаменитый фотограф снимает первозданные леса России, чтобы рассказать
-                      о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
+                  <a href="#" target="_blank" class="card__link">
+                    <img class="card__image" src="" alt="Фото статьи">
+                    <p class="card__tag"></p>
+                    <div class="card__content">
+                      <p class="card__date"></p>
+                      <h3 class="card__title"></h3>
+                      <p class="card__text"></p>
                     </div>
-                  <p class="card__source">Риа</p>
-                </a>
-              </article>
-
-              <article class="card">
-                <a href="#" class="card__link">
-                  <img class="card__image" src=".././images/card_1.1c15e881481ef3f9a32ba0bedd251665.jpg" alt="Фото статьи">
-                  <p class="card__tag">Парки</p>
-                  <div class="card__save-container">
-                    <i class="card__icon card__icon_del"></i>
-                    <span class="card__notification card__notification_medium">Убрать их сохранённых</span>
-                  </div>
-                  <div class="card__content">
-                    <p class="card__date">2 августа, 2019</p>
-                    <h3 class="card__title">Национальное достояние — парки</h3>
-                    <p class="card__text">В 2016 году Америка отмечала важный юбилей:
-                      сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
-                      где и сегодня каждый может приобщиться к природе.</p>
-                  </div>
-                  <p class="card__source">Лента.ру</p>
-                </a>
-              </article>
-
-              <article class="card">
-                <a href="#" class="card__link">
-                  <img class="card__image" src=".././images/card_2.fce24681ab1e60472799c6f34d01a7c4.jpg" alt="Фото статьи">
-                  <p class="card__tag">Фотография</p>
-                  <div class="card__save-container">
-                    <i class="card__icon card__icon_del"></i>
-                    <span class="card__notification card__notification_medium">Убрать их сохранённых</span>
-                  </div>
-                  <div class="card__content">
-                    <p class="card__date">2 августа, 2019</p>
-                    <h3 class="card__title">Лесные огоньки: история одной фотографии</h3>
-                    <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
-                      из местных чудес природы.</p>
-                  </div>
-                  <p class="card__source">Медуза</p>
-                </a>
-              </article>
+                    <p class="card__source"></p>
+                  </a>
+                </article>
+              </template>
             </div>
           </div>
         </section>
@@ -172,6 +98,6 @@
 
     </div>
   </div>
-  <script type="module" src="../articles/articles.c6c245fa77d4b90f3d81.js"></script>
+  <script type="module" src="../articles/articles.b376d37074037db1846c.js"></script>
 </body>
 </html>
