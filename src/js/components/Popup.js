@@ -12,10 +12,11 @@ export default class Popup extends BaseComponent {
     this._closeButton = this._popupElement.querySelector('.popup__close');
 
     this._handleEscClose = this._handleEscClose.bind(this);
-    this._openPopup = this._openPopup.bind(this);
+    this._handleOpenPopup = this._handleOpenPopup.bind(this);
     this._close = this.close.bind(this);
   }
 
+  // Вставляет в попап содержимое
   setContent(selector) {
     this._template = document.querySelector(selector).content.querySelector('.popup__template-container');
     this._element = this._template.cloneNode(true);
@@ -25,35 +26,38 @@ export default class Popup extends BaseComponent {
     this.open();
 
     if (selector !== '#success-popup-template') {
-      this._validation.render(this._element.querySelector('.popup__form'));
+      this._validation.setEventListeners(this._element.querySelector('.popup__form'));
     }
   }
 
+  // Очищает содержимое попапа
   clearContent() {
     this._popupElement.querySelector('.popup__template-container').remove();
-    this._clearHandlers(this._link, 'click', this._openPopup);
+    this._clearHandler(this._link, 'click', this._handleOpenPopup);
   }
 
+  // Открывает попап
   open() {
     this._popupElement.classList.add('popup_is-opened');
   }
 
+  // Закрывает попап
   close() {
     this._popupElement.classList.remove('popup_is-opened');
     this._element.remove();
-    this._clearHandlers(document, 'keyup', this._handleEscClose);
-    this._clearHandlers(this._closeButton, 'click', this._close);
+    this._clearHandler(document, 'keyup', this._handleEscClose);
+    this._clearHandler(this._closeButton, 'click', this._close);
   }
 
+  // Закрывает попап при клике в любое место вне попапа и при нажатии клавиши Esc
   _handleEscClose(event) {
-    const ESCAPE_CODE = 27;
-
-    if (event.keyCode === ESCAPE_CODE) {
+    if (event.key === 'Escape' || (event.target === this._popupElement && event.target !== this._popupElement.querySelector('.popup__content'))) {
       this.close();
     }
   }
 
-  _openPopup() {
+  // Открывает попап по клику на ссылку
+  _handleOpenPopup() {
     this.clearContent();
 
     if (event.target.classList.contains('popup__link_signin')) {
@@ -63,11 +67,12 @@ export default class Popup extends BaseComponent {
     }
   }
 
+  // Устанавливает слушатели
   _setEventListeners() {
     this._setHandlers([
-      [document, 'keyup', this._handleEscClose],
       [this._closeButton, 'click', this._close],
-      [this._link, 'click', this._openPopup],
+      [this._link, 'click', this._handleOpenPopup],
+      [this._popupElement, 'mousedown', this._handleEscClose],
     ]);
   }
 }

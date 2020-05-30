@@ -4,12 +4,8 @@ export default class Auth {
   constructor() {
   }
 
+  // Возвращает состояние зарегистрирован ли пользователь
   getLoginState() {
     return !!localStorage.getItem('loginState');
-  }
-
-  checkAuthorization() {
-    // eslint-disable-next-line no-unused-expressions
-    !this.getLoginState() ? window.location.href = '../' : false;
   }
 }

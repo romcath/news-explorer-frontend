@@ -1,6 +1,7 @@
+/* eslint-disable no-useless-constructor */
+/* eslint-disable no-empty-function */
 export default class BaseComponent {
   constructor() {
-    this._handlers = [];
   }
 
   _setHandlers(handlers) {
@@ -13,7 +14,7 @@ export default class BaseComponent {
     element.addEventListener(event, handler);
   }
 
-  _clearHandlers(element, event, handler) {
+  _clearHandler(element, event, handler) {
     element.removeEventListener(event, handler);
   }
 }

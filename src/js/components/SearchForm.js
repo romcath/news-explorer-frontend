@@ -11,12 +11,12 @@ export default class SearchForm extends FormValidator {
     this._setEventListeners();
   }
 
+  // Устанавливает слушатели
   _setEventListeners() {
-    this._setHandlers([
-      [this._formElement, 'submit', this._searchHandler],
-    ]);
+    this._addHandler(this._formElement, 'submit', this._searchHandler);
   }
 
+  // Проверяет введено ли ключевое слово
   validateElement() {
     const inputElement = document.querySelector('.search__input');
 
@@ -28,6 +28,7 @@ export default class SearchForm extends FormValidator {
     return true;
   }
 
+  // Возвращает ключевое слово
   getValue() {
     return this._formElement.search.value;
   }

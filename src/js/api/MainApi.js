@@ -55,6 +55,17 @@ export default class MainApi {
       .catch((err) => Promise.reject(err.status));
   }
 
+  getArticles() {
+    return fetch(`${this._options.baseUrl}/articles`, {
+      redirect: 'follow',
+      credentials: 'include',
+      method: 'GET',
+      headers: this._options.headers,
+    })
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .catch((err) => Promise.reject(err.status));
+  }
+
   createArticle({ keyword, title, text, date, source, link, image }) {
     return fetch(`${this._options.baseUrl}/articles`, {
       redirect: 'follow',

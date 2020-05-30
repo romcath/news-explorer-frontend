@@ -21,6 +21,7 @@ import {
   RESULTS_ELEMENT,
   NO_RESULTS_ELEMENT,
   SHOW_MORE_BUTTON,
+  MENU_MOBILE_BUTTON,
 } from './constants/constants';
 
 import MainApi from './api/MainApi';
@@ -41,23 +42,24 @@ const handleLoginState = () => {
   if (auth.getLoginState()) {
     mainApi.getUserData()
       .then((res) => {
-        header.render(true, res.name);
+        header.render(MENU_AUTH_TEMPLATE_ID, true, res.name);
       })
       .catch((err) => {
         console.log(err);
       });
   } else {
-    header.render(false);
+    header.render(MENU_UNAUTH_TEMPLATE_ID, false);
   }
 };
 
 // Обработчик submit для формы регистрации
 const singupHandler = () => {
-  const { email, password, name } = validation._getInfo();
+  const { email, password, name } = validation.getInfoFromSignup();
 
   event.preventDefault();
   mainApi.signup(email, password, name)
     .then(() => {
+      header.closeMobileMenu();
       popup.close();
       popup.setContent(SUCCESS_TEMPLATE_ID);
     })
@@ -68,7 +70,7 @@ const singupHandler = () => {
 
 // Обработчик submit для формы входа
 const singinHandler = () => {
-  const { email, password } = validation._getInfo();
+  const { email, password } = validation.getInfoFromSignin();
 
   event.preventDefault();
   mainApi.signin(email, password)
@@ -77,10 +79,12 @@ const singinHandler = () => {
 
       mainApi.getUserData()
         .then((res) => {
-          popup.close();
-          header.render(true, res.name);
-          newsCardList.clearContent();
           const array = newsCardList.getRenderedCards();
+
+          popup.close();
+          header.clearElement();
+          header.render(MENU_AUTH_TEMPLATE_ID, true, res.name);
+          newsCardList.clearContent();
           newsCardList.appendCardsLogin(array);
         })
         .catch((err) => {
@@ -104,7 +108,7 @@ const searchHandler = () => {
     RESULTS_ELEMENT.classList.remove('results_enabled');
 
     newsCardList.clearContent();
-    newsCardList.clearArrayRenderedCards();
+    newsCardList.clearRenderedCardsArray();
     newsCardList.renderLoader(true);
 
     newsApi.getNews(keyWord)
@@ -146,6 +150,7 @@ const saveButtonHandler = (cardData) => function saveButton() {
   mainApi.createArticle(cardFields)
     .then((res) => {
       const articleId = res._id;
+
       iconElement.removeEventListener('click', saveButton);
       newsCard.addMarkedIcon(iconElement, cardData, articleId, true);
     })
@@ -180,22 +185,24 @@ const newsApi = new NewsApi(NEWS_API_PARAMS, calculateDate);
 const validation = new FormValidator(FORM_ERRORS, singupHandler, singinHandler);
 const searchForm = new SearchForm(SEARCH_FORM, searchHandler);
 const popup = new Popup(POPUP_ELEMENT, SIGNIN_TEMPLATE_ID, SIGNUP_TEMPLATE_ID, validation);
-const newsCard = new NewsCard(CARD_TEMPLATE_ID, auth, calculateCardDate, saveButtonHandler, removeButtonHandler);
+const newsCard = new NewsCard({ CARD_TEMPLATE_ID, auth, calculateCardDate, saveButtonHandler, removeButtonHandler });
 const newsCardList = new NewsCardList(CARDS_ELEMENT, newsCard, SHOW_MORE_BUTTON);
 const header = new Header({
-  MENU_AUTH_TEMPLATE_ID,
-  MENU_UNAUTH_TEMPLATE_ID,
   MENU_CONTAINER,
+  MENU_MOBILE_BUTTON,
   LOGO_ELEMENT,
   theme: 'white',
   openPopupHandler: () => {
     popup.setContent(SIGNIN_TEMPLATE_ID);
+    header.closeMobileMenu();
   },
   logoutHandler: () => {
     mainApi.logout()
       .then(() => {
         localStorage.removeItem('loginState');
-        header.render(false);
+        header.closeMobileMenu();
+        header.clearElement();
+        header.render(MENU_UNAUTH_TEMPLATE_ID, false);
         newsCardList.clearContent();
         const array = newsCardList.getRenderedCards();
         newsCardList.appendCardsLogin(array);

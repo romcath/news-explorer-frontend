@@ -1,22 +1,21 @@
 import BaseComponent from './BaseComponent';
 
 export default class NewsCard extends BaseComponent {
-  constructor(selector, auth, calculateCardDate, saveButtonHandler, removeButtonHandler) {
+  constructor({ ...props }) {
     super();
-    this._selector = selector;
-    this._auth = auth;
-    this._calculateCardDate = calculateCardDate;
+    this._props = props;
+    this._selector = this._props.CARD_TEMPLATE_ID;
+    this._auth = this._props.auth;
+    this._calculateCardDate = this._props.calculateCardDate;
 
-    this._saveButtonHandler = saveButtonHandler || (() => {});
-    this._saveButtonHandler = this._saveButtonHandler.bind(this);
-
-    this._removeButtonHandler = removeButtonHandler || (() => {});
-    this._removeButtonHandler = this._removeButtonHandler.bind(this);
+    this._saveButtonHandler = this._props.saveButtonHandler || (() => {});
+    this._removeButtonHandler = this._props.removeButtonHandler || (() => {});
 
     this.saveButton = null;
     this.removeButton = null;
   }
 
+  // Создаёт карточку
   create(cardData) {
     this._template = document.querySelector(this._selector).content.querySelector('.card');
     this.element = this._template.cloneNode(true);
@@ -34,26 +33,50 @@ export default class NewsCard extends BaseComponent {
     return this.element;
   }
 
-  renderIcon(cardData) {
-    this._cardIcon = this.element.querySelector('.card__icon');
-    this._cardNotification = this.element.querySelector('.card__notification');
+  // Создаёт карточку на странице с сохранёнными статьями
+  createSavedCard(cardData) {
+    this._template = document.querySelector(this._selector).content.querySelector('.card');
+    this.element = this._template.cloneNode(true);
 
-    if (this._auth.getLoginState()) {
-      this._cardIcon.classList.add('card__icon_save');
-      this._cardNotification.textContent = '';
+    this.element.querySelector('.card__link').setAttribute('href', cardData.link);
+    this.element.querySelector('.card__image').setAttribute('src', cardData.image);
+    this.element.querySelector('.card__tag').textContent = cardData.keyword;
+    this.element.querySelector('.card__date').textContent = cardData.date;
+    this.element.querySelector('.card__title').textContent = cardData.title;
+    this.element.querySelector('.card__text').textContent = cardData.text;
+    this.element.querySelector('.card__source').textContent = cardData.source;
+
+    this.renderIcon(cardData);
+
+    return this.element;
+  }
+
+  // Отрисовывает иконку карточки
+  renderIcon(cardData) {
+    const cardIcon = this.element.querySelector('.card__icon');
+    const cardNotification = this.element.querySelector('.card__notification');
+
+    if (window.location.pathname === '/articles/articles.html') {
+      cardIcon.classList.add('card__icon_del');
+      cardIcon.classList.add('card__icon_no-signup');
+      cardNotification.textContent = 'Убрать из сохранённых';
+
+      this.removeButton = this._removeButtonHandler(cardData._id);
+      this._addHandler(cardIcon, 'click', this.removeButton);
+    } else if (this._auth.getLoginState()) {
+      cardIcon.classList.add('card__icon_save');
+      cardNotification.textContent = '';
 
       this.saveButton = this._saveButtonHandler(cardData);
-
-      this._setHandlers([
-        [this._cardIcon, 'click', this.saveButton],
-      ]);
+      this._addHandler(cardIcon, 'click', this.saveButton);
     } else {
-      this._cardIcon.classList.add('card__icon_save');
-      this._cardIcon.classList.add('card__icon_no-signup');
-      this._cardNotification.textContent = 'Войдите, чтобы сохранять статьи';
+      cardIcon.classList.add('card__icon_save');
+      cardIcon.classList.add('card__icon_no-signup');
+      cardNotification.textContent = 'Войдите, чтобы сохранять статьи';
     }
   }
 
+  // Проверяет заполнен ли url картинки
   _checkUrlToImage(cardData) {
     this.elementImage = this.element.querySelector('.card__image');
 
@@ -64,19 +87,16 @@ export default class NewsCard extends BaseComponent {
     }
   }
 
+  // Добавляет иконку, когда пользователь сохранил статью
   addMarkedIcon(iconElement, cardData, articleId, flag) {
     iconElement.classList.toggle('card__icon_marked');
 
     if (flag) {
       this.removeButton = this._removeButtonHandler(articleId, cardData);
-      this._setHandlers([
-        [iconElement, 'click', this.removeButton],
-      ]);
+      this._addHandler(iconElement, 'click', this.removeButton);
     } else {
       this.saveButton = this._saveButtonHandler(cardData);
-      this._setHandlers([
-        [iconElement, 'click', this.saveButton],
-      ]);
+      this._addHandler(iconElement, 'click', this.saveButton);
     }
   }
 }

@@ -1,5 +1,4 @@
 /* eslint-disable no-restricted-globals */
-
 import BaseComponent from './BaseComponent';
 
 export default class FormValidator extends BaseComponent {
@@ -17,30 +16,8 @@ export default class FormValidator extends BaseComponent {
     this._toggleButtonState = this._toggleButtonState.bind(this);
   }
 
-  render(formElement) {
-    this._setEventListeners(formElement);
-  }
-
-  handleServerError(error) {
-    if (error.message === 'Failed to fetch') {
-      this._setServerError('Запрос не отправлен. Проблемы с Интернетом');
-    } else {
-      error.json()
-        .then((result) => {
-          this._setServerError(result.message);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }
-
-  _setServerError(error) {
-    const spanButton = document.querySelector('.popup__span_center');
-    spanButton.textContent = error;
-  }
-
-  _setEventListeners(formElement) {
+  // Устанавливает слушатели на форму
+  setEventListeners(formElement) {
     if (document.forms.signin) {
       this._setHandlers([
         [formElement, 'input', this._validateInputElement],
@@ -56,6 +33,46 @@ export default class FormValidator extends BaseComponent {
     }
   }
 
+  // Обрабатывает ошибку от сервера
+  handleServerError(error) {
+    if (error.message === 'Failed to fetch') {
+      this._setServerError('Запрос не отправлен. Проблемы с Интернетом');
+    } else {
+      error.json()
+        .then((result) => {
+          this._setServerError(result.message);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  // Добавлеят форме ошибку, пришедшую с сервера
+  _setServerError(error) {
+    document.querySelector('.popup__span_center').textContent = error;
+  }
+
+  // Возвращает данные из формы регистрации
+  getInfoFromSignup() {
+    const formValue = {
+      email: event.currentTarget.elements.signup_email.value,
+      password: event.currentTarget.elements.signup_pass.value,
+      name: event.currentTarget.elements.signup_name.value,
+    };
+    return formValue;
+  }
+
+  // Возвращает данные из формы входа
+  getInfoFromSignin() {
+    const formValue = {
+      email: event.currentTarget.elements.signin_email.value,
+      password: event.currentTarget.elements.signin_pass.value,
+    };
+    return formValue;
+  }
+
+  // Валидирует инпут
   _validateInputElement() {
     const inputElement = event.target;
     const spanElement = event.currentTarget.querySelector(`#${inputElement.id}_error`);
@@ -79,13 +96,14 @@ export default class FormValidator extends BaseComponent {
     }
   }
 
+  // Активирует кнопку, если форма валидна
   _toggleButtonState() {
-    const inputList = Array.from(event.currentTarget.querySelectorAll('.popup__input'));
+    const inputsList = Array.from(event.currentTarget.querySelectorAll('.popup__input'));
     const buttonElement = event.currentTarget.querySelector('.popup__button');
 
     buttonElement.previousElementSibling.textContent = '';
 
-    if (this._validateForm(inputList)) {
+    if (this._validateForm(inputsList)) {
       buttonElement.classList.add('popup__button_enabled');
       buttonElement.removeAttribute('disabled');
     } else {
@@ -94,23 +112,8 @@ export default class FormValidator extends BaseComponent {
     }
   }
 
+  // Проверяет валидность всей формы
   _validateForm(inputList) {
     return inputList.every((inputElement) => inputElement.validity.valid);
-  }
-
-  _getInfo() {
-    if (document.forms.signup) {
-      const formValue = {
-        email: event.currentTarget.elements.signup_email.value,
-        password: event.currentTarget.elements.signup_pass.value,
-        name: event.currentTarget.elements.signup_name.value,
-      };
-      return formValue;
-    }
-    const formValue = {
-      email: event.currentTarget.elements.signin_email.value,
-      password: event.currentTarget.elements.signin_pass.value,
-    };
-    return formValue;
   }
 }

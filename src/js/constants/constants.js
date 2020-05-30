@@ -15,6 +15,7 @@ const MENU_UNAUTH_TEMPLATE_ID = '#menu-unauthorized-template';
 const CARD_TEMPLATE_ID = '#card-template';
 
 const MENU_CONTAINER = document.querySelector('.overlay');
+const MENU_MOBILE_BUTTON = document.querySelector('.header__menu-icon');
 const LOGO_ELEMENT = document.querySelector('.logo');
 const ROOT_ELEMENT = document.querySelector('.root');
 const POPUP_ELEMENT = document.querySelector('.popup');
@@ -44,6 +45,7 @@ export {
   MENU_UNAUTH_TEMPLATE_ID,
   CARD_TEMPLATE_ID,
   MENU_CONTAINER,
+  MENU_MOBILE_BUTTON,
   LOGO_ELEMENT,
   ROOT_ELEMENT,
   POPUP_ELEMENT,
