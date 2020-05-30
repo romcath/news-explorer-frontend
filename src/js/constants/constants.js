@@ -26,8 +26,7 @@ const NO_RESULTS_ELEMENT = document.querySelector('.no-results');
 const SHOW_MORE_BUTTON = document.querySelector('.card__show-button');
 const SEARCH_FORM = document.forms.explorer;
 
-// const SERVER_URL = 'http://api.news-app.cf';
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = 'http://api.news-app.cf';
 const NEWS_API_PARAMS = {
   baseUrl: 'https://praktikum.tk/news/v2/everything?',
   sortBy: 'popularity',
