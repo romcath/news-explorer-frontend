@@ -1,6 +1,7 @@
 @import url(./_mobile/button_mobile.css);
 @import url(./_dark/button_dark.css);
 @import url(./_logout/button_logout.css);
+@import url(./_disabled/button_disabled.css);
 
 .button {
   width: 176px;

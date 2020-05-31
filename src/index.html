@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="html, css, news, exploper">
   <meta name="description" content="Сервис для поиска новостей">
@@ -15,29 +16,40 @@
     <section class="search">
       <header class="header">
         <div class="header__container">
-          <h2 class="logo logo_white">NewsExplorer</h2>
+          <h2 class="logo">NewsExplorer</h2>
           <img src="<%=require('./images/menu.png').default%>" alt="Меню" class="header__menu-icon">
           <div class="overlay">
-            <nav class="menu">
-              <ul class="menu__list">
-                <li class="menu__item">
-                  <a href="#" class="menu__link menu__link_white menu__link_active-white">Главная</a>
-                </li>
-              </ul>
-              <!-- <ul class="menu__list">
-                <li class="menu__item">
-                  <a href="articles/articles.html" class="menu__link">Сохранённые статьи</a>
-                </li>
-              </ul>
-              <button type="submit" name="submit" class="button button_logout button_mobile">
-                <span class="button__name">Грета</span>
-                <i class="icon icon_logout_white"></i>
-              </button> -->
-              <button type="submit" name="submit" class="button button_mobile">
-                <span class="button__name">Авторизоваться</span>
-                <i class="icon icon_disabled"></i>
-              </button>
-            </nav>
+            <template id="menu-unauthorized-template">
+              <nav class="menu">
+                <ul class="menu__list">
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">Главная</a>
+                  </li>
+                </ul>
+                <button type="submit" name="submit" class="button button_mobile">
+                  <span class="button__name">Авторизоваться</span>
+                    <i class="icon icon_disabled"></i>
+                </button>
+              </nav>
+            </template>
+            <template id="menu-authorized-template">
+              <nav class="menu">
+                <ul class="menu__list">
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">Главная</a>
+                  </li>
+                </ul>
+                <ul class="menu__list">
+                  <li class="menu__item">
+                    <a href="articles/articles.html" class="menu__link">Сохранённые статьи</a>
+                  </li>
+                </ul>
+                <button type="submit" name="submit" class="button button_logout button_mobile">
+                  <span class="button__name"></span>
+                  <i class="icon"></i>
+                </button>
+              </nav>
+            </template>
           </div>
         </div>
       </header>
@@ -45,7 +57,7 @@
         <h1 class="search__title">Что в мире творится?</h1>
         <p class="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
         <form class="search__form" name="explorer" novalidate>
-          <input type="text" name="search" class="search__input" placeholder="Введите тему новости" minlength="2" maxlength="30" required>
+          <input type="text" id="search" class="search__input" placeholder="Введите тему новости" required>
           <button type="submit" name="submit" class="button search__button">Искать</button>
         </form>
       </div>
@@ -60,6 +72,15 @@
         </div>
       </section>
 
+      <section class="error root__section">
+        <div class="error__container">
+          <img src="<%=require('./images/attention.png').default%>" alt="Ошибка" class="error___image">
+          <h2 class="error__title">Ошибка</h2>
+          <p class="text">Во время запроса произошла ошибка. Возможно, проблема с соединением
+            или сервер недоступен. Подождите немного и попробуйте ещё раз.</p>
+        </div>
+      </section>
+
       <section class="preloader root__section">
         <i class="preloader__circle"></i>
         <h2 class="text">Идет поиск новостей...</h2>
@@ -69,58 +90,22 @@
         <div class="results__content">
           <h2 class="title">Результаты поиска</h2>
           <div class="cards root__cards">
-            <article class="card">
-              <a href="#" class="card__link">
-                <img class="card__image" src="<%=require('./images/card_1.jpg').default%>" alt="Фото статьи">
+            <template id="card-template">
+              <article class="card">
                 <div class="card__save-container">
-                  <i class="card__icon card__icon_save card__icon_no-signup"></i>
-                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
+                  <i class="card__icon"></i>
+                  <span class="card__notification"></span>
                 </div>
-                <div class="card__content">
-                  <p class="card__date">2 августа, 2019</p>
-                  <h3 class="card__title">Национальное достояние — парки</h3>
-                  <p class="card__text">В 2016 году Америка отмечала важный юбилей:
-                    сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
-                    где и сегодня каждый может приобщиться к природе.</p>
-                </div>
-                <p class="card__source">Лента.ру</p>
-              </a>
-            </article>
-
-            <article class="card">
-              <a href="#" class="card__link">
-                <img class="card__image" src="<%=require('./images/card_2.jpg').default%>" alt="Фото статьи">
-                <div class="card__save-container">
-                  <i class="card__icon card__icon_save"></i>
-                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
-                </div>
-                <div class="card__content">
-                  <p class="card__date">2 августа, 2019</p>
-                  <h3 class="card__title">Лесные огоньки: история одной фотографии</h3>
-                  <p class="card__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного
-                    из местных чудес природы.</p>
-                </div>
-                <p class="card__source">Медуза</p>
-              </a>
-            </article>
-
-            <article class="card">
-              <a href="#" class="card__link">
-                <img class="card__image" src="<%=require('./images/card_3.jpg').default%>" alt="Фото статьи">
-                <div class="card__save-container">
-                  <i class="card__icon card__icon_marked"></i>
-                  <span class="card__notification">Войдите, чтобы сохранять статьи</span>
-                </div>
-                <div class="card__content">
-                  <p class="card__date">2 августа, 2019</p>
-                  <h3 class="card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h3>
-                  <p class="card__text">Знаменитый фотограф снимает первозданные леса России, чтобы рассказать
-                    о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
-                  </div>
-                <p class="card__source">Риа</p>
-              </a>
-            </article>
-
+                <a href="#" target="_blank" class="card__link">
+                  <img class="card__image" src="" alt="Фото статьи">
+                  <div class="card__content">
+                    <p class="card__date"></p>
+                    <h3 class="card__title"></h3>
+                    <p class="card__text"></div>
+                  <p class="card__source"></p>
+                </a>
+              </article>
+            </template>
           </div>
           <button class="button card__show-button">Показать ещё</button>
         </div>
@@ -164,71 +149,72 @@
       </footer>
     </main>
 
-    <div class="popup popup_signup">
+    <div class="popup">
       <div class="popup__content">
         <img src="<%=require('./images/close.png').default%>" alt="Закрыть" class="popup__close">
-        <h3 class="popup__title">Регистрация</h3>
-        <form class="popup__form" name="signup" novalidate>
-          <div class="popup__container">
-            <label for="signup-email" class="popup__label">Email</label>
-            <input type="email" id="signup-email" class="popup__input" placeholder="Введите почту" pattern="^[\w\-\.]{2,}@([\w\-]{1,63}\.)*[\w\-]{2,63}\.[a-z]{2,}$" required>
-            <span class="popup__span">Неправильный формат email</span>
+        <template id="signup-popup-template">
+          <div class="popup__template-container">
+            <h3 class="popup__title">Регистрация</h3>
+            <form class="popup__form" name="signup" novalidate>
+              <div class="popup__container">
+                <label for="signup_email" class="popup__label">Email</label>
+                <input type="email" id="signup_email" class="popup__input" placeholder="Введите почту" pattern="^[\w\-\.]{2,}@([\w\-]{1,63}\.)*[\w\-]{2,63}\.[a-z]{2,}$" required>
+                <span class="popup__span" id="signup_email_error"></span>
+              </div>
+              <div class="popup__container">
+                <label for="signup_pass" class="popup__label">Пароль</label>
+                <input type="password" id="signup_pass" class="popup__input" placeholder="Введите пароль" minlength="8" required>
+                <span class="popup__span" id="signup_pass_error"></span>
+              </div>
+              <div class="popup__container">
+                <label for="signup_name" class="popup__label">Имя</label>
+                <input type="text" id="signup_name" class="popup__input" placeholder="Введите своё имя" minlength="2" maxlength="30" required>
+                <span class="popup__span" id="signup_name_error" ></span>
+              </div>
+              <div class="popup__container">
+                <span class="popup__span popup__span_center"></span>
+                <button type="submit" name="submit" class="button popup__button" disabled>Зарегистрироваться</button>
+              </div>
+            </form>
+            <p class="popup__text">или
+              <a class="popup__link popup__link_signin" href="#">Войти</a>
+            </p>
           </div>
-          <div class="popup__container">
-            <label for="signup-pass" class="popup__label">Пароль</label>
-            <input type="password" id="signup-pass" class="popup__input" placeholder="Введите пароль" minlength="8" required>
-            <span class="popup__span"></span>
+        </template>
+        <template id="signin-popup-template">
+          <div class="popup__template-container">
+            <h3 class="popup__title">Вход</h3>
+            <form class="popup__form" name="signin" novalidate>
+              <div class="popup__container">
+                <label for="signin_email" class="popup__label">Email</label>
+                <input type="email" id="signin_email" class="popup__input" placeholder="Введите почту" pattern="^[\w\-\.]{2,}@([\w\-]{1,63}\.)*[\w\-]{2,63}\.[a-z]{2,}$" required>
+                <span class="popup__span" id="signin_email_error"></span>
+              </div>
+              <div class="popup__container">
+                <label for="signin_pass" class="popup__label">Пароль</label>
+                <input type="password" id="signin_pass" class="popup__input" placeholder="Введите пароль" minlength="8" required>
+                <span class="popup__span" id="signin_pass_error"></span>
+              </div>
+              <div class="popup__container">
+                <span class="popup__span popup__span_center"></span>
+                <button type="submit" name="submit" class="button popup__button" disabled>Войти</button>
+              </div>
+            </form>
+            <p class="popup__text">или
+              <a class="popup__link" href="#">Зарегистрироваться</a>
+            </p>
           </div>
-          <div class="popup__container">
-            <label for="signup-name" class="popup__label">Имя</label>
-            <input type="text" id="signup-name" class="popup__input" placeholder="Введите своё имя" minlength="2" maxlength="30" required>
-            <span class="popup__span"></span>
+        </template>
+        <template id="success-popup-template">
+          <div class="popup__template-container">
+            <h3 class="popup__title popup__title_success">Пользователь успешно зарегистрирован!</h3>
+            <a class="popup__link popup__link_signin" href="#">Выполнить вход</a>
           </div>
-          <div class="popup__container">
-            <span class="popup__span popup__span_center">Такой пользователь уже есть</span>
-            <button type="submit" name="submit" class="button popup__button" disabled>Зарегистрироваться</button>
-          </div>
-        </form>
-        <p class="popup__text">или
-          <a class="popup__link" href="#">Войти</a>
-        </p>
-      </div>
-    </div>
-
-    <div class="popup popup_signin">
-      <div class="popup__content">
-        <img src="<%=require('./images/close.png').default%>" alt="Закрыть" class="popup__close">
-        <h3 class="popup__title">Вход</h3>
-        <form class="popup__form" name="signin" novalidate>
-          <div class="popup__container">
-            <label for="signin-email" class="popup__label">Email</label>
-            <input type="email" id="signin-email" class="popup__input" placeholder="Введите почту" pattern="^[\w\-\.]{2,}@([\w\-]{1,63}\.)*[\w\-]{2,63}\.[a-z]{2,}$" required>
-            <span class="popup__span">Неправильный формат email</span>
-          </div>
-          <div class="popup__container">
-            <label for="signin-pass" class="popup__label">Пароль</label>
-            <input type="password" id="signin-pass" class="popup__input" placeholder="Введите пароль" minlength="8" required>
-            <span class="popup__span"></span>
-          </div>
-          <div class="popup__container">
-            <span class="popup__span"></span>
-            <button type="submit" name="submit" class="button popup__button" disabled>Войти</button>
-          </div>
-        </form>
-        <p class="popup__text">или
-          <a class="popup__link" href="#">Зарегистрироваться</a>
-        </p>
-      </div>
-    </div>
-
-    <div class="popup popup_success">
-      <div class="popup__content popup__content_flexed">
-        <img src="<%=require('./images/close.png').default%>" alt="Закрыть" class="popup__close">
-        <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
-        <a class="popup__link" href="#">Выполнить вход</a>
+        </template>
       </div>
     </div>
 
   </div>
+  <script type="module" src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </body>
 </html>

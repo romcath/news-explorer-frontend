@@ -7,8 +7,8 @@ const cssnano = require('cssnano');
 
 module.exports = {
   entry: {
-    main: './src/scripts/index.js',
-    articles: './src/scripts/articles.js',
+    main: './src/js/index.js',
+    articles: './src/js/saved-articles/index.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

@@ -1,6 +1,4 @@
 .search__form {
-  display: flex;
-  align-self: start;
   width: 100%;
   position: relative;
 }

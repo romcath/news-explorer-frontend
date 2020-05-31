@@ -1,5 +1,9 @@
 .card .card__icon_marked {
   background-image: url(../../../../../images/save-icon-marked.jpg);
   cursor: pointer;
+}
 
+.card .card__icon_marked:hover {
+  background-image: url(../../../../../images/save-icon-marked.jpg);
+  cursor: pointer;
 }

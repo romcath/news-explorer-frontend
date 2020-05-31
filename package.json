@@ -1,11 +1,11 @@
 {
   "name": "news-explorer-frontend",
-  "version": "1.0.16",
+  "version": "1.0.21",
   "description": "Frontend for service NewsExplorer",
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && webpack --mode production",
-    "dev": "webpack-dev-server --mode development --open --watch",
+    "dev": "webpack-dev-server --mode development --watch",
     "deploy": "gh-pages -d dist",
     "eslint": "eslint --ext .js ./",
     "eslint:fix": "eslint --ext .js ./ --fix"
