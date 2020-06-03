@@ -28,7 +28,7 @@ const SEARCH_FORM = document.forms.explorer;
 
 const SERVER_URL = 'https://api.news-app.cf';
 const NEWS_API_PARAMS = {
-  baseUrl: 'https://praktikum.tk/news/v2/everything?',
+  baseUrl: 'https://praktikum.tk/news/v2/top-headlines?country=us&',
   sortBy: 'popularity',
   apiKey: 'a1048954ae8c497ba3eb9fb43d74f300',
   pageSize: 100,
