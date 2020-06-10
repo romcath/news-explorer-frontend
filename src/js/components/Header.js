@@ -64,6 +64,14 @@ export default class Header extends BaseComponent {
     }
     this._clearHandler(this._mobileButton, 'click', this._openMobileMenu.bind(this));
     this._addHandler(this._mobileButton, 'click', this.closeMobileMenu.bind(this));
+    this._addHandler(this._container, 'mousedown', this._handleCloseMenu.bind(this));
+  }
+
+  // Закрывает мобильное меню при клике по оверлею
+  _handleCloseMenu(event) {
+    if (event.target === this._container && event.target !== this._container.querySelector('.menu_mobile')) {
+      this.closeMobileMenu();
+    }
   }
 
   // Закрывает мобильное меню
