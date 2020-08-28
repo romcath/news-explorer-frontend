@@ -44,7 +44,7 @@
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 350px) {
   .card__text {
     -webkit-line-clamp: 4;
   }
