@@ -26,9 +26,9 @@ const NO_RESULTS_ELEMENT = document.querySelector('.no-results');
 const SHOW_MORE_BUTTON = document.querySelector('.card__show-button');
 const SEARCH_FORM = document.forms.explorer;
 
-const SERVER_URL = 'https://api.news-app.cf';
+const SERVER_URL = 'http://localhost:3000';
 const NEWS_API_PARAMS = {
-  baseUrl: 'https://praktikum.tk/news/v2/everything?',
+  baseUrl: 'https://nomoreparties.co/news/v2/everything?',
   sortBy: 'popularity',
   apiKey: 'a1048954ae8c497ba3eb9fb43d74f300',
   pageSize: 100,
